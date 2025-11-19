@@ -1,0 +1,3250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkyShield Technologies - Elite AI Cybersecurity & Autonomous Defense Systems | Agadir, Morocco">
+    <title>SkyShield Technologies - Cyber Defense Command Center</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- CesiumJS -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.115/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.115/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-cyan: #00F0FF;
+            --primary-red: #FF0844;
+            --primary-green: #00FF41;
+            --primary-yellow: #FFD700;
+            --dark-bg: #000000;
+            --dark-panel: #0A0A0A;
+            --military-green: #00FF41;
+            --warning-red: #FF0844;
+            --radar-blue: #00F0FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Matrix Rain Effect */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* Particle Network Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* Cesium Globe Container */
+        #cesium-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .cesium-viewer-bottom {
+            display: none !important;
+        }
+
+        /* Scanlines Effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 4;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Content Layer */
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* HUD Overlay */
+        .hud-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 8;
+            pointer-events: none;
+        }
+
+        .hud-corner {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--radar-blue);
+        }
+
+        .hud-corner.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .hud-corner.top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .hud-corner.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .hud-corner.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Radar System */
+        .radar-system {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 200px;
+            height: 200px;
+            z-index: 9;
+            pointer-events: none;
+        }
+
+        .radar-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            border-radius: 50%;
+            animation: radar-pulse 3s ease-out infinite;
+        }
+
+        .radar-circle:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .radar-circle:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes radar-pulse {
+            0% {
+                transform: scale(0.3);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        .radar-line {
+            position: absolute;
+            width: 2px;
+            height: 50%;
+            background: linear-gradient(to bottom, var(--radar-blue), transparent);
+            top: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            animation: radar-sweep 4s linear infinite;
+        }
+
+        @keyframes radar-sweep {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .radar-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-green);
+            animation: radar-blink 2s ease-in-out infinite;
+        }
+
+        @keyframes radar-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 5px 30px rgba(0, 240, 255, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--radar-blue);
+            text-shadow: 0 0 20px var(--radar-blue);
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--radar-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--radar-blue);
+            text-shadow: 0 0 10px var(--radar-blue);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 90;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--military-green);
+            padding: 1rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            min-width: 250px;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .status-label {
+            color: var(--military-green);
+        }
+
+        .status-value {
+            color: var(--radar-blue);
+            font-weight: bold;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--military-green);
+            box-shadow: 0 0 10px var(--military-green);
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1200px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .glitch {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 12vw, 10rem);
+            font-weight: 900;
+            color: var(--radar-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            animation: glitch-text 5s infinite;
+        }
+
+        @keyframes glitch-text {
+            0%, 90%, 100% {
+                text-shadow: 
+                    0 0 30px var(--radar-blue),
+                    0 0 60px var(--radar-blue),
+                    0 0 100px var(--radar-blue);
+            }
+            92% {
+                text-shadow: 
+                    0 0 30px var(--warning-red),
+                    3px 0 20px var(--radar-blue),
+                    -3px 0 20px var(--military-green);
+                transform: translate(-2px, 2px);
+            }
+            94% {
+                text-shadow: 
+                    0 0 30px var(--military-green),
+                    -3px 0 20px var(--radar-blue),
+                    3px 0 20px var(--warning-red);
+                transform: translate(2px, -2px);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--military-green);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .location-badge {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 2px solid var(--radar-blue);
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: border-pulse 2s ease-in-out infinite;
+            max-width: 90%;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        @keyframes border-pulse {
+            0%, 100% {
+                border-color: var(--radar-blue);
+                box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            }
+            50% {
+                border-color: var(--military-green);
+                box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+            }
+        }
+
+        .cta-container {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: 2px solid;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .cta-btn-primary {
+            border-color: var(--radar-blue);
+            color: var(--radar-blue);
+        }
+
+        .cta-btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--radar-blue);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-btn-primary:hover {
+            color: #000;
+        }
+
+        .cta-btn-primary:hover::before {
+            left: 0;
+        }
+
+        .cta-btn-secondary {
+            border-color: var(--military-green);
+            color: var(--military-green);
+        }
+
+        .cta-btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--military-green);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-btn-secondary:hover {
+            color: #000;
+        }
+
+        .cta-btn-secondary:hover::before {
+            left: 0;
+        }
+
+        /* Section Styles */
+        section {
+            min-height: 100vh;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--radar-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--military-green), transparent);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Terminal Window */
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--military-green);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        .terminal-header {
+            background: rgba(0, 255, 65, 0.2);
+            padding: 0.8rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            border-bottom: 1px solid var(--military-green);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--warning-red);
+        }
+
+        .terminal-dot:nth-child(2) {
+            background: var(--primary-yellow);
+        }
+
+        .terminal-dot:nth-child(3) {
+            background: var(--military-green);
+        }
+
+        .terminal-body {
+            padding: 2rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--military-green);
+        }
+
+        .terminal-prompt {
+            color: var(--radar-blue);
+        }
+
+        .terminal-command {
+            color: var(--primary-yellow);
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--radar-blue), var(--military-green), var(--warning-red), var(--primary-yellow));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--radar-blue);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.4);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.3;
+            animation: border-rotate 3s linear infinite;
+        }
+
+        @keyframes border-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--radar-blue);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--military-green);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--military-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--radar-blue), transparent);
+            animation: scan-horizontal 2s linear infinite;
+        }
+
+        @keyframes scan-horizontal {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            color: var(--radar-blue);
+            text-shadow: 0 0 30px var(--radar-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--military-green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        /* Threat Map Section */
+        .threat-map {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--warning-red);
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .threat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 8, 68, 0.3);
+        }
+
+        .threat-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--warning-red);
+            text-transform: uppercase;
+        }
+
+        .threat-status {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .threat-level {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 8, 68, 0.2);
+            border: 1px solid var(--warning-red);
+            color: var(--warning-red);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            animation: threat-blink 1s ease-in-out infinite;
+        }
+
+        @keyframes threat-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .threat-list {
+            list-style: none;
+        }
+
+        .threat-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 8, 68, 0.1);
+            border-left: 3px solid var(--warning-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .threat-location {
+            color: var(--radar-blue);
+            font-weight: 700;
+        }
+
+        .threat-type {
+            color: var(--primary-yellow);
+        }
+
+        .threat-time {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Founder Section */
+        .founder-section {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(0, 255, 65, 0.1));
+            border: 2px solid var(--radar-blue);
+            padding: 3rem;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.2), transparent);
+            animation: rotate-gradient 10s linear infinite;
+        }
+
+        @keyframes rotate-gradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .founder-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .founder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--radar-blue);
+            box-shadow: 0 0 40px var(--radar-blue);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(0, 255, 65, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--radar-blue);
+            margin: 0 auto;
+        }
+
+        .founder-info {
+            text-align: left;
+        }
+
+        .founder-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--radar-blue);
+            text-shadow: 0 0 20px var(--radar-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .founder-title {
+            font-size: 1.3rem;
+            color: var(--military-green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-bio {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Data Stream */
+        .data-stream {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 7;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--military-green);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .stream-line {
+            margin: 5px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: stream-scroll 20s linear infinite;
+        }
+
+        @keyframes stream-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 2px solid var(--radar-blue);
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--radar-blue);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--military-green);
+            text-shadow: 0 0 10px var(--military-green);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--radar-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--radar-blue);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--radar-blue);
+            color: #000;
+            box-shadow: 0 0 20px var(--radar-blue);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 240, 255, 0.3);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Advanced Glitch Effect on Hover */
+        .glitch-hover {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-hover::before,
+        .glitch-hover::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        .glitch-hover:hover::before {
+            animation: glitch-anim-1 0.3s infinite;
+            color: var(--warning-red);
+            z-index: -1;
+        }
+
+        .glitch-hover:hover::after {
+            animation: glitch-anim-2 0.3s infinite;
+            color: var(--military-green);
+            z-index: -2;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% {
+                clip-path: inset(40% 0 61% 0);
+                transform: translate(-2px, 2px);
+                opacity: 0.8;
+            }
+            20% {
+                clip-path: inset(92% 0 1% 0);
+                transform: translate(2px, -2px);
+                opacity: 0.9;
+            }
+            40% {
+                clip-path: inset(43% 0 1% 0);
+                transform: translate(-2px, 2px);
+                opacity: 0.7;
+            }
+            60% {
+                clip-path: inset(25% 0 58% 0);
+                transform: translate(2px, -2px);
+                opacity: 0.8;
+            }
+            80% {
+                clip-path: inset(54% 0 7% 0);
+                transform: translate(-2px, 2px);
+                opacity: 0.9;
+            }
+            100% {
+                clip-path: inset(58% 0 43% 0);
+                transform: translate(2px, -2px);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% {
+                clip-path: inset(65% 0 20% 0);
+                transform: translate(2px, -2px);
+                opacity: 0.8;
+            }
+            20% {
+                clip-path: inset(12% 0 64% 0);
+                transform: translate(-2px, 2px);
+                opacity: 0.9;
+            }
+            40% {
+                clip-path: inset(87% 0 10% 0);
+                transform: translate(2px, -2px);
+                opacity: 0.7;
+            }
+            60% {
+                clip-path: inset(35% 0 48% 0);
+                transform: translate(-2px, 2px);
+                opacity: 0.8;
+            }
+            80% {
+                clip-path: inset(45% 0 23% 0);
+                transform: translate(2px, -2px);
+                opacity: 0.9;
+            }
+            100% {
+                clip-path: inset(19% 0 72% 0);
+                transform: translate(-2px, 2px);
+                opacity: 0.8;
+            }
+        }
+
+        /* Threat Heatmap Visualization */
+        .heatmap-container {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--warning-red);
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+            gap: 3px;
+            margin-top: 1rem;
+        }
+
+        .heatmap-cell {
+            aspect-ratio: 1;
+            background: rgba(0, 240, 255, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .heatmap-cell.threat-low {
+            background: rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+
+        .heatmap-cell.threat-medium {
+            background: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+        }
+
+        .heatmap-cell.threat-high {
+            background: rgba(255, 8, 68, 0.5);
+            box-shadow: 0 0 8px rgba(255, 8, 68, 0.7);
+            animation: threat-pulse 1s infinite;
+        }
+
+        @keyframes threat-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Code Typing Animation */
+        .typing-container {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--military-green);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid var(--military-green);
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--military-green); }
+        }
+
+        /* Advanced Data Visualization */
+        .data-viz-container {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--radar-blue);
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .data-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .data-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .data-bar-label {
+            min-width: 150px;
+            color: var(--radar-blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .data-bar-track {
+            flex: 1;
+            height: 30px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--radar-blue), var(--military-green));
+            box-shadow: 0 0 15px var(--radar-blue);
+            position: relative;
+            transition: width 2s ease-out;
+        }
+
+        .data-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: bar-shimmer 2s infinite;
+        }
+
+        @keyframes bar-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .data-bar-value {
+            min-width: 60px;
+            text-align: right;
+            color: var(--military-green);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Satellite Tracker Display */
+        .satellite-tracker {
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid var(--radar-blue);
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .satellite-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .satellite-card {
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid var(--radar-blue);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .satellite-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--radar-blue);
+            box-shadow: 0 0 10px var(--radar-blue);
+        }
+
+        .satellite-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--radar-blue);
+            margin-bottom: 1rem;
+        }
+
+        .satellite-data {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .satellite-data-row {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .satellite-data-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .satellite-data-value {
+            color: var(--military-green);
+            font-weight: 600;
+        }
+
+        /* Network Graph */
+        .network-graph {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--military-green);
+            padding: 2rem;
+            margin-top: 3rem;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .network-node {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--radar-blue);
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .network-node:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 30px var(--radar-blue);
+            z-index: 10;
+        }
+
+        .network-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--military-green), transparent);
+            transform-origin: left center;
+            animation: pulse-connection 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-connection {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Cyber Attack Timeline */
+        .timeline-container {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--warning-red);
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--warning-red), transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 30px);
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: calc(50% + 30px);
+            padding-right: 0;
+        }
+
+        .timeline-content {
+            background: rgba(255, 8, 68, 0.1);
+            border: 2px solid var(--warning-red);
+            padding: 1.5rem;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--warning-red);
+            box-shadow: 0 0 20px var(--warning-red);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-time {
+            color: var(--primary-yellow);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            color: var(--warning-red);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Command Console */
+        .command-console {
+            background: #000;
+            border: 2px solid var(--military-green);
+            padding: 1rem;
+            margin-top: 2rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .console-line {
+            margin-bottom: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .console-timestamp {
+            color: rgba(255, 255, 255, 0.4);
+            min-width: 80px;
+        }
+
+        .console-level {
+            min-width: 60px;
+            font-weight: 700;
+        }
+
+        .console-level.info {
+            color: var(--radar-blue);
+        }
+
+        .console-level.warning {
+            color: var(--primary-yellow);
+        }
+
+        .console-level.error {
+            color: var(--warning-red);
+        }
+
+        .console-level.success {
+            color: var(--military-green);
+        }
+
+        .console-message {
+            color: rgba(255, 255, 255, 0.9);
+            flex: 1;
+        }
+
+        /* Progress Indicators */
+        .progress-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .progress-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            color: var(--radar-blue);
+        }
+
+        .progress-percentage {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--military-green);
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--radar-blue), var(--military-green));
+            box-shadow: 0 0 10px var(--radar-blue);
+            transition: width 1.5s ease-out;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progress-shimmer 1.5s infinite;
+        }
+
+        @keyframes progress-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* System Metrics Dashboard */
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .metric-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--radar-blue);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--radar-blue), transparent);
+            animation: metric-scan 2s linear infinite;
+        }
+
+        @keyframes metric-scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 900;
+            color: var(--military-green);
+            text-shadow: 0 0 15px var(--military-green);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: rgba(255, 8, 68, 0.95);
+            border: 2px solid var(--warning-red);
+            padding: 1rem 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            animation: alert-pulse 1s ease-in-out infinite;
+            display: none;
+        }
+
+        .alert-banner.active {
+            display: block;
+        }
+
+        @keyframes alert-pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px var(--warning-red);
+            }
+            50% {
+                box-shadow: 0 0 40px var(--warning-red);
+            }
+        }
+
+        /* Holographic Effect */
+        .hologram {
+            position: relative;
+            animation: hologram-flicker 0.15s infinite;
+        }
+
+        @keyframes hologram-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+
+        .hologram::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+            animation: hologram-scan 3s linear infinite;
+        }
+
+        @keyframes hologram-scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .founder-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .founder-info {
+                text-align: center;
+            }
+
+            .status-bar {
+                display: none;
+            }
+
+            .radar-system {
+                width: 150px;
+                height: 150px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .data-stream {
+                display: none;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--radar-blue);
+            text-shadow: 0 0 40px var(--radar-blue);
+            animation: loading-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loading-pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(0, 240, 255, 0.2);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            position: absolute;
+            height: 100%;
+            background: var(--radar-blue);
+            box-shadow: 0 0 20px var(--radar-blue);
+            animation: loading-progress 2s ease-in-out infinite;
+        }
+
+        @keyframes loading-progress {
+            0% {
+                width: 0;
+                left: 0;
+            }
+            50% {
+                width: 100%;
+                left: 0;
+            }
+            100% {
+                width: 0;
+                left: 100%;
+            }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--military-green);
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">SKYSHIELD</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <div class="loading-text">INITIALIZING DEFENSE SYSTEMS...</div>
+    </div>
+
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Particles Network -->
+    <div id="particles-js"></div>
+
+    <!-- Cesium Globe -->
+    <div id="cesium-container"></div>
+
+    <!-- Scanlines -->
+    <div class="scanlines"></div>
+
+    <!-- HUD Overlay -->
+    <div class="hud-overlay">
+        <div class="hud-corner top-left"></div>
+        <div class="hud-corner top-right"></div>
+        <div class="hud-corner bottom-left"></div>
+        <div class="hud-corner bottom-right"></div>
+    </div>
+
+    <!-- Radar System -->
+    <div class="radar-system">
+        <div class="radar-circle"></div>
+        <div class="radar-circle"></div>
+        <div class="radar-circle"></div>
+        <div class="radar-line"></div>
+        <div class="radar-dot" style="top: 30%; left: 60%;"></div>
+        <div class="radar-dot" style="top: 70%; left: 40%;"></div>
+        <div class="radar-dot" style="top: 50%; left: 80%;"></div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <span class="status-label">STATUS:</span>
+            <span class="status-value"><span class="status-indicator"></span> ACTIVE</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">THREATS:</span>
+            <span class="status-value">127</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">UPTIME:</span>
+            <span class="status-value">99.99%</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">LOCATION:</span>
+            <span class="status-value" id="statusLocation">DETECTING...</span>
+        </div>
+    </div>
+
+    <!-- Data Stream -->
+    <div class="data-stream">
+        <div class="stream-line">01101000 01110100 01110100 01110000 01110011 00111010 00101111 00101111</div>
+        <div class="stream-line">ENCRYPT_AES256::ACTIVE | FIREWALL::ENABLED | IDS::MONITORING</div>
+        <div class="stream-line">PKT_IN: 145.23.67.89:443 > 192.168.1.1:8080 [SYN] SEQ=1234567</div>
+        <div class="stream-line">THREAT_LEVEL: LOW | INCIDENTS: 0 | ALERTS: 3 | LATENCY: 12ms</div>
+        <div class="stream-line">AUTH_SUCCESS: user@skyshield.ma | TOKEN: a7f8d9e3c2b1</div>
+        <div class="stream-line">01101000 01110100 01110100 01110000 01110011 00111010 00101111 00101111</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="mainNav">
+        <div class="nav-container">
+            <div class="logo">SKYSHIELD</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#defense">Defense</a></li>
+                <li><a href="#cloud">Cloud</a></li>
+                <li><a href="#drones">Drones</a></li>
+                <li><a href="#vision">Vision</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1 class="glitch" data-text="SKYSHIELD">SKYSHIELD</h1>
+                <div class="hero-subtitle">CYBER WARFARE COMMAND CENTER</div>
+                <p class="hero-description">
+                    Elite AI-Driven Cybersecurity | Autonomous Defense Systems | Global Threat Intelligence
+                </p>
+                <div class="location-badge" id="locationBadge">🌍 DETECTING LOCATION...</div>
+                <div class="cta-container">
+                    <a href="#defense" class="cta-btn cta-btn-primary">ENGAGE SYSTEMS</a>
+                    <a href="#vision" class="cta-btn cta-btn-secondary">MISSION BRIEF</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI DEFENSE SECTION -->
+        <section id="defense">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">AI DEFENSE MATRIX</h2>
+                    <p class="section-subtitle">
+                        Neural Threat Detection | Quantum Encryption | Real-Time Countermeasures
+                    </p>
+                </div>
+
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="terminal-prompt">root@skyshield:~$</span> <span class="terminal-command">./initialize_defense_systems.sh</span></p>
+                        <p>Loading AI defense protocols...</p>
+                        <p>✓ Neural network threat detection: ONLINE</p>
+                        <p>✓ Quantum encryption modules: ENABLED</p>
+                        <p>✓ Zero-trust architecture: ACTIVE</p>
+                        <p>✓ Real-time countermeasures: DEPLOYED</p>
+                        <p>✓ Global threat intelligence: SYNCHRONIZED</p>
+                        <p style="color: var(--military-green); font-weight: bold;">[SUCCESS] All defense systems operational</p>
+                        <p><span class="terminal-prompt">root@skyshield:~$</span> <span style="animation: blink 1s infinite;">_</span></p>
+                    </div>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🛡️</span>
+                        <h3 class="feature-title">Neural Threat Detection</h3>
+                        <p class="feature-description">
+                            AI-powered pattern recognition analyzes millions of data points per second, 
+                            identifying threats before they materialize. Our neural networks learn from 
+                            global attack patterns to predict and prevent zero-day exploits.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔐</span>
+                        <h3 class="feature-title">Quantum Encryption</h3>
+                        <p class="feature-description">
+                            Next-generation cryptography utilizing quantum key distribution ensures 
+                            unbreakable data protection. Our systems are resistant to both classical 
+                            and quantum computing attacks.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h3 class="feature-title">Zero-Trust Architecture</h3>
+                        <p class="feature-description">
+                            Multi-layered security with continuous verification protocols. Every request 
+                            is authenticated, authorized, and encrypted - regardless of source location 
+                            or network position.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎯</span>
+                        <h3 class="feature-title">Real-Time Response</h3>
+                        <p class="feature-description">
+                            Automated countermeasures deployed in milliseconds. Our AI system isolates 
+                            threats, deploys patches, and adapts defense strategies without human intervention.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🌐</span>
+                        <h3 class="feature-title">Global Intelligence Network</h3>
+                        <p class="feature-description">
+                            Connected to worldwide threat intelligence feeds, our system correlates 
+                            attack patterns across 127 countries, providing early warning of emerging threats.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔬</span>
+                        <h3 class="feature-title">Behavioral Analysis</h3>
+                        <p class="feature-description">
+                            Advanced machine learning algorithms establish behavioral baselines, detecting 
+                            anomalies that indicate insider threats or sophisticated APT campaigns.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="threat-map">
+                    <div class="threat-header">
+                        <h3 class="threat-title">ACTIVE THREAT MONITORING</h3>
+                        <div class="threat-status">
+                            <div class="threat-level">ALERT LEVEL: MODERATE</div>
+                        </div>
+                    </div>
+                    <ul class="threat-list">
+                        <li class="threat-item">
+                            <span><span class="threat-location">US-EAST-1</span> | <span class="threat-type">DDoS Attack Mitigated</span></span>
+                            <span class="threat-time">2 min ago</span>
+                        </li>
+                        <li class="threat-item">
+                            <span><span class="threat-location">EU-WEST-2</span> | <span class="threat-type">Ransomware Blocked</span></span>
+                            <span class="threat-time">8 min ago</span>
+                        </li>
+                        <li class="threat-item">
+                            <span><span class="threat-location">ASIA-PAC-3</span> | <span class="threat-type">Phishing Attempt Neutralized</span></span>
+                            <span class="threat-time">15 min ago</span>
+                        </li>
+                        <li class="threat-item">
+                            <span><span class="threat-location">MENA-1</span> | <span class="threat-type">SQL Injection Prevented</span></span>
+                            <span class="threat-time">23 min ago</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLOUD COMPUTING SECTION -->
+        <section id="cloud">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">CLOUD FORTRESS</h2>
+                    <p class="section-subtitle">
+                        Multi-Cloud Architecture | Enterprise-Grade Security | Infinite Scalability
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">☁️</span>
+                        <h3 class="feature-title">Multi-Cloud Strategy</h3>
+                        <p class="feature-description">
+                            Seamless integration across AWS, Azure, Google Cloud, and IBM Cloud. 
+                            Our infrastructure spans multiple providers for maximum redundancy 
+                            and zero single points of failure.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📊</span>
+                        <h3 class="feature-title">Auto-Scaling Systems</h3>
+                        <p class="feature-description">
+                            Intelligent resource allocation adapts to demand in real-time. From 
+                            zero to millions of requests per second - our infrastructure scales 
+                            automatically while maintaining peak performance.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💾</span>
+                        <h3 class="feature-title">Disaster Recovery</h3>
+                        <p class="feature-description">
+                            Automated backup systems with geo-redundancy ensure your data is always 
+                            protected. Multi-region failover activates within seconds of detecting 
+                            infrastructure issues.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💰</span>
+                        <h3 class="feature-title">Cost Optimization</h3>
+                        <p class="feature-description">
+                            AI-driven resource management reduces cloud costs by up to 40%. Our 
+                            intelligent algorithms predict usage patterns and optimize resource 
+                            allocation for maximum efficiency.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔒</span>
+                        <h3 class="feature-title">Military-Grade Security</h3>
+                        <p class="feature-description">
+                            Every deployment includes encryption at rest and in transit, DDoS 
+                            protection, intrusion detection, and compliance with international 
+                            security standards (ISO 27001, SOC 2, GDPR).
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">⚙️</span>
+                        <h3 class="feature-title">Infrastructure as Code</h3>
+                        <p class="feature-description">
+                            Terraform and Kubernetes orchestration enable rapid deployment and 
+                            consistent environments. Version-controlled infrastructure ensures 
+                            reproducibility and audit trails.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">99.99%</span>
+                        <div class="stat-label">Uptime Guarantee</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">&lt;50ms</span>
+                        <div class="stat-label">Global Latency</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">500K+</span>
+                        <div class="stat-label">Requests/Second</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">127</span>
+                        <div class="stat-label">Global Regions</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DRONES SECTION -->
+        <section id="drones">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">AUTONOMOUS SYSTEMS</h2>
+                    <p class="section-subtitle">
+                        AI-Powered Navigation | Swarm Intelligence | Defense-Grade Technology
+                    </p>
+                </div>
+
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="terminal-prompt">drone@skyshield:~$</span> <span class="terminal-command">./deploy_autonomous_fleet.sh</span></p>
+                        <p>Initializing drone swarm protocols...</p>
+                        <p>✓ AI navigation systems: CALIBRATED</p>
+                        <p>✓ Swarm intelligence network: SYNCHRONIZED</p>
+                        <p>✓ Real-time telemetry: STREAMING</p>
+                        <p>✓ Surveillance systems: ACTIVE</p>
+                        <p>✓ Communication encryption: ENABLED</p>
+                        <p style="color: var(--military-green); font-weight: bold;">[SUCCESS] Fleet ready for deployment</p>
+                        <p>Fleet size: 250 units | Coverage: 500km² | Endurance: 48 hours</p>
+                        <p><span class="terminal-prompt">drone@skyshield:~$</span> <span style="animation: blink 1s infinite;">_</span></p>
+                    </div>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🚁</span>
+                        <h3 class="feature-title">Commercial Delivery</h3>
+                        <p class="feature-description">
+                            AI-optimized route planning for logistics and transport. Our delivery 
+                            drones navigate complex urban environments autonomously, reducing 
+                            delivery times by 75% while maintaining perfect safety records.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">📹</span>
+                        <h3 class="feature-title">Security & Surveillance</h3>
+                        <p class="feature-description">
+                            Real-time monitoring with facial recognition and threat detection. 
+                            High-resolution 8K cameras paired with AI analysis provide 360° 
+                            coverage of critical infrastructure.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🤝</span>
+                        <h3 class="feature-title">Swarm Intelligence</h3>
+                        <p class="feature-description">
+                            Coordinated multi-drone operations with distributed decision-making. 
+                            Our swarms adapt to changing conditions and work together to accomplish 
+                            complex missions autonomously.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">⏱️</span>
+                        <h3 class="feature-title">48hr Flight Time</h3>
+                        <p class="feature-description">
+                            Extended endurance systems for long-range missions. Solar-assisted 
+                            battery technology combined with efficient aerodynamics enables 
+                            continuous operation for critical applications.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🎖️</span>
+                        <h3 class="feature-title">Defense Systems</h3>
+                        <p class="feature-description">
+                            Military-grade reconnaissance and rapid response capabilities. Our 
+                            defense drones provide strategic intelligence, border patrol, and 
+                            emergency response in hostile environments.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">👁️</span>
+                        <h3 class="feature-title">Stealth Operations</h3>
+                        <p class="feature-description">
+                            Low-signature design minimizes radar cross-section and acoustic footprint. 
+                            Advanced materials and aerodynamics enable covert operations in 
+                            sensitive areas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISION SECTION -->
+        <section id="vision">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">MISSION CONTROL</h2>
+                    <p class="section-subtitle">
+                        Protecting Digital Ecosystems | Empowering Global Security | Defining the Future
+                    </p>
+                </div>
+
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                    </div>
+                    <div class="terminal-body">
+                        <p style="color: var(--radar-blue); font-weight: bold; font-size: 1.1rem;">MISSION STATEMENT</p>
+                        <p style="margin-top: 1rem;">
+                            To create a new era of intelligent, automated, and resilient cybersecurity — 
+                            where cloud infrastructure, artificial intelligence, and autonomous systems 
+                            work together to protect and empower digital ecosystems around the world.
+                        </p>
+                        <p style="margin-top: 1rem;">
+                            From Agadir, Morocco, we're building the defensive intelligence infrastructure 
+                            that will secure the future of digital sovereignty. Our systems protect critical 
+                            infrastructure across 127 countries, neutralize threats before they materialize, 
+                            and maintain 99.99% uptime in the face of evolving cyber warfare.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">127</span>
+                        <div class="stat-label">Countries Protected</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">500K+</span>
+                        <div class="stat-label">Threats Neutralized</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">99.99%</span>
+                        <div class="stat-label">System Uptime</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">24/7</span>
+                        <div class="stat-label">Active Monitoring</div>
+                    </div>
+                </div>
+
+                <div class="founder-section">
+                    <div class="founder-content">
+                        <div class="founder-image">👨‍💻</div>
+                        <div class="founder-info">
+                            <h3 class="founder-name">YOUSSEF AGHAYOU</h3>
+                            <div class="founder-title">Founder & Chief Cybersecurity Engineer</div>
+                            <p class="founder-bio">
+                                Cybersecurity engineer specializing in cloud computing, AI integration, 
+                                and digital defense systems. Leading SkyShield's mission to revolutionize 
+                                global cybersecurity from Agadir, Morocco. With extensive experience in 
+                                AWS, Azure, Google Cloud, and IBM Cloud, Youssef has architected defense 
+                                systems protecting critical infrastructure across multiple continents.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Threat Heatmap -->
+                <div class="heatmap-container">
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: var(--warning-red); margin-bottom: 1rem;">
+                        GLOBAL THREAT HEATMAP
+                    </h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem;">
+                        Real-time visualization of cyber threat density across monitored regions
+                    </p>
+                    <div class="heatmap-grid" id="heatmapGrid"></div>
+                </div>
+
+                <!-- Satellite Tracker -->
+                <div class="satellite-tracker">
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: var(--radar-blue); margin-bottom: 1rem;">
+                        ACTIVE SATELLITE NETWORK
+                    </h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem;">
+                        Live telemetry from defense and reconnaissance satellites
+                    </p>
+                    <div class="satellite-list">
+                        <div class="satellite-card">
+                            <div class="satellite-name">DEFENSE-1</div>
+                            <div class="satellite-data">
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Altitude:</span>
+                                    <span class="satellite-data-value">550 km</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Velocity:</span>
+                                    <span class="satellite-data-value">7.8 km/s</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Orbit:</span>
+                                    <span class="satellite-data-value">LEO</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Status:</span>
+                                    <span class="satellite-data-value">OPERATIONAL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="satellite-card">
+                            <div class="satellite-name">RECON-2</div>
+                            <div class="satellite-data">
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Altitude:</span>
+                                    <span class="satellite-data-value">800 km</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Velocity:</span>
+                                    <span class="satellite-data-value">7.5 km/s</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Orbit:</span>
+                                    <span class="satellite-data-value">LEO</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Status:</span>
+                                    <span class="satellite-data-value">SCANNING</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="satellite-card">
+                            <div class="satellite-name">COMM-3</div>
+                            <div class="satellite-data">
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Altitude:</span>
+                                    <span class="satellite-data-value">1200 km</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Velocity:</span>
+                                    <span class="satellite-data-value">7.2 km/s</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Orbit:</span>
+                                    <span class="satellite-data-value">MEO</span>
+                                </div>
+                                <div class="satellite-data-row">
+                                    <span class="satellite-data-label">Status:</span>
+                                    <span class="satellite-data-value">TRANSMITTING</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Metrics Dashboard -->
+                <div class="metrics-dashboard">
+                    <div class="metric-card">
+                        <div class="metric-icon">⚡</div>
+                        <div class="metric-value">1.2ms</div>
+                        <div class="metric-label">Response Time</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🔥</div>
+                        <div class="metric-value">127</div>
+                        <div class="metric-label">Active Firewalls</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📡</div>
+                        <div class="metric-value">3.2TB</div>
+                        <div class="metric-label">Data Processed</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🎯</div>
+                        <div class="metric-value">500K</div>
+                        <div class="metric-label">Threats Blocked</div>
+                    </div>
+                </div>
+
+                <!-- Data Visualization -->
+                <div class="data-viz-container">
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: var(--radar-blue); margin-bottom: 1rem;">
+                        SYSTEM PERFORMANCE ANALYTICS
+                    </h3>
+                    <div class="data-bars">
+                        <div class="data-bar-item">
+                            <div class="data-bar-label">CPU Usage</div>
+                            <div class="data-bar-track">
+                                <div class="data-bar-fill" style="width: 67%;"></div>
+                            </div>
+                            <div class="data-bar-value">67%</div>
+                        </div>
+                        <div class="data-bar-item">
+                            <div class="data-bar-label">Memory Allocation</div>
+                            <div class="data-bar-track">
+                                <div class="data-bar-fill" style="width: 82%;"></div>
+                            </div>
+                            <div class="data-bar-value">82%</div>
+                        </div>
+                        <div class="data-bar-item">
+                            <div class="data-bar-label">Network Throughput</div>
+                            <div class="data-bar-track">
+                                <div class="data-bar-fill" style="width: 94%;"></div>
+                            </div>
+                            <div class="data-bar-value">94%</div>
+                        </div>
+                        <div class="data-bar-item">
+                            <div class="data-bar-label">Security Score</div>
+                            <div class="data-bar-track">
+                                <div class="data-bar-fill" style="width: 99%;"></div>
+                            </div>
+                            <div class="data-bar-value">99%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attack Timeline -->
+                <div class="timeline-container">
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: var(--warning-red); margin-bottom: 1rem; text-align: center;">
+                        RECENT THREAT MITIGATION TIMELINE
+                    </h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time" id="threat1Time">Loading...</div>
+                                <div class="timeline-title">DDoS Attack Neutralized</div>
+                                <div class="timeline-description">
+                                    Large-scale distributed denial-of-service attack targeting US-EAST-1 
+                                    infrastructure. 1.2M requests/sec mitigated using AI-powered traffic analysis.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time" id="threat2Time">Loading...</div>
+                                <div class="timeline-title">Ransomware Blocked</div>
+                                <div class="timeline-description">
+                                    Zero-day ransomware variant detected and isolated in EU-WEST-2. 
+                                    Behavioral analysis prevented file encryption across 2,500 endpoints.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time" id="threat3Time">Loading...</div>
+                                <div class="timeline-title">APT Campaign Disrupted</div>
+                                <div class="timeline-description">
+                                    Advanced persistent threat campaign targeting financial sector. 
+                                    Command and control servers neutralized, 47 compromised systems recovered.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time" id="threat4Time">Loading...</div>
+                                <div class="timeline-title">Phishing Network Dismantled</div>
+                                <div class="timeline-description">
+                                    Sophisticated phishing operation targeting 15,000 users neutralized. 
+                                    AI-powered email analysis prevented credential harvesting.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Command Console -->
+                <div class="command-console" id="commandConsole">
+                    <div class="console-line">
+                        <span class="console-timestamp">14:32:17</span>
+                        <span class="console-level success">SUCCESS</span>
+                        <span class="console-message">Defense system initialized successfully</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-timestamp">14:32:18</span>
+                        <span class="console-level info">INFO</span>
+                        <span class="console-message">Connecting to global threat intelligence network...</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-timestamp">14:32:19</span>
+                        <span class="console-level success">SUCCESS</span>
+                        <span class="console-message">Connected to 127 regional nodes</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-timestamp">14:32:20</span>
+                        <span class="console-level warning">WARNING</span>
+                        <span class="console-message">Elevated threat level detected in ASIA-PAC-3</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-timestamp">14:32:21</span>
+                        <span class="console-level info">INFO</span>
+                        <span class="console-message">Deploying countermeasures...</span>
+                    </div>
+                    <div class="console-line">
+                        <span class="console-timestamp">14:32:22</span>
+                        <span class="console-level success">SUCCESS</span>
+                        <span class="console-message">Threat neutralized. All systems nominal.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SkyShield</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.8;">
+                        Elite cybersecurity and autonomous defense systems. 
+                        Protecting digital infrastructure worldwide from Agadir, Morocco.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/skyshield-technologies" target="_blank" class="social-link" title="LinkedIn">L</a>
+                        <a href="https://x.com/SkyShieldTech" target="_blank" class="social-link" title="X (Twitter)">𝕏</a>
+                        <a href="https://www.instagram.com/skyshield_technology" target="_blank" class="social-link" title="Instagram">I</a>
+                        <a href="https://www.facebook.com/profile.php?id=100068892067191" target="_blank" class="social-link" title="Facebook">F</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#defense">AI Defense Systems</a></li>
+                        <li><a href="#cloud">Cloud Infrastructure</a></li>
+                        <li><a href="#drones">Autonomous Drones</a></li>
+                        <li><a href="#vision">Strategic Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#vision">About Us</a></li>
+                        <li><a href="#vision">Mission</a></li>
+                        <li><a href="#vision">Leadership</a></li>
+                        <li><a href="#hero">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Threat Intelligence</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 SkyShield Technologies. All rights reserved. | Agadir, Morocco 🇲🇦<br>
+                Secured by quantum encryption | Protected by AI defense systems
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ===================================
+        // LOADING SCREEN
+        // ===================================
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        // ===================================
+        // GEOLOCATION DETECTION
+        // ===================================
+        function getCountryFlag(countryCode) {
+            var flags = {
+                'MA': '🇲🇦', 'US': '🇺🇸', 'GB': '🇬🇧', 'FR': '🇫🇷', 'DE': '🇩🇪',
+                'ES': '🇪🇸', 'IT': '🇮🇹', 'CA': '🇨🇦', 'AE': '🇦🇪', 'SA': '🇸🇦',
+                'EG': '🇪🇬', 'DZ': '🇩🇿', 'TN': '🇹🇳', 'TR': '🇹🇷', 'IN': '🇮🇳',
+                'PK': '🇵🇰', 'CN': '🇨🇳', 'JP': '🇯🇵', 'KR': '🇰🇷', 'AU': '🇦🇺',
+                'BR': '🇧🇷', 'MX': '🇲🇽', 'AR': '🇦🇷', 'CL': '🇨🇱', 'CO': '🇨🇴',
+                'NL': '🇳🇱', 'BE': '🇧🇪', 'SE': '🇸🇪', 'NO': '🇳🇴', 'DK': '🇩🇰',
+                'FI': '🇫🇮', 'PL': '🇵🇱', 'RU': '🇷🇺', 'UA': '🇺🇦', 'GR': '🇬🇷',
+                'PT': '🇵🇹', 'CH': '🇨🇭', 'AT': '🇦🇹', 'IE': '🇮🇪', 'NZ': '🇳🇿',
+                'SG': '🇸🇬', 'MY': '🇲🇾', 'TH': '🇹🇭', 'PH': '🇵🇭', 'ID': '🇮🇩',
+                'VN': '🇻🇳', 'ZA': '🇿🇦', 'NG': '🇳🇬', 'KE': '🇰🇪', 'IL': '🇮🇱',
+                'QA': '🇶🇦', 'KW': '🇰🇼', 'OM': '🇴🇲', 'BH': '🇧🇭', 'JO': '🇯🇴',
+                'LB': '🇱🇧', 'IQ': '🇮🇶', 'SY': '🇸🇾', 'YE': '🇾🇪', 'LY': '🇱🇾'
+            };
+            return flags[countryCode] || '🌍';
+        }
+
+        function updateLocation() {
+            // Try ipapi.co first (more reliable, no API key needed)
+            fetch('https://ipapi.co/json/')
+                .then(function(response) {
+                    if (!response.ok) throw new Error('API failed');
+                    return response.json();
+                })
+                .then(function(data) {
+                    var city = data.city || 'Unknown City';
+                    var country = data.country_name || 'Unknown Country';
+                    var countryCode = data.country_code || 'XX';
+                    var flag = getCountryFlag(countryCode);
+                    
+                    var locationBadge = document.getElementById('locationBadge');
+                    var statusLocation = document.getElementById('statusLocation');
+                    
+                    if (locationBadge) {
+                        locationBadge.textContent = flag + ' ' + city.toUpperCase() + ', ' + country.toUpperCase();
+                    }
+                    
+                    if (statusLocation) {
+                        statusLocation.textContent = city.toUpperCase() + ', ' + countryCode;
+                    }
+                })
+                .catch(function(error) {
+                    console.log('ipapi.co failed, trying fallback...');
+                    // Fallback to ip-api.com
+                    fetch('http://ip-api.com/json/')
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            var city = data.city || 'Unknown City';
+                            var country = data.country || 'Unknown Country';
+                            var countryCode = data.countryCode || 'XX';
+                            var flag = getCountryFlag(countryCode);
+                            
+                            var locationBadge = document.getElementById('locationBadge');
+                            var statusLocation = document.getElementById('statusLocation');
+                            
+                            if (locationBadge) {
+                                locationBadge.textContent = flag + ' ' + city.toUpperCase() + ', ' + country.toUpperCase();
+                            }
+                            
+                            if (statusLocation) {
+                                statusLocation.textContent = city.toUpperCase() + ', ' + countryCode;
+                            }
+                        })
+                        .catch(function(error) {
+                            console.log('All geolocation APIs failed, using default');
+                            // Default fallback to Agadir
+                            var locationBadge = document.getElementById('locationBadge');
+                            var statusLocation = document.getElementById('statusLocation');
+                            
+                            if (locationBadge) {
+                                locationBadge.textContent = '🇲🇦 AGADIR, MOROCCO';
+                            }
+                            
+                            if (statusLocation) {
+                                statusLocation.textContent = 'AGADIR, MA';
+                            }
+                        });
+                });
+        }
+
+        // Call geolocation on page load
+        updateLocation();
+
+        // ===================================
+        // DYNAMIC TIMELINE DATES
+        // ===================================
+        function updateTimelineDates() {
+            var now = new Date();
+            
+            // Generate 4 threat times (within last 24 hours)
+            var threat1Date = new Date(now.getTime() - (2 * 60 * 60 * 1000)); // 2 hours ago
+            var threat2Date = new Date(now.getTime() - (6 * 60 * 60 * 1000)); // 6 hours ago
+            var threat3Date = new Date(now.getTime() - (14 * 60 * 60 * 1000)); // 14 hours ago
+            var threat4Date = new Date(now.getTime() - (20 * 60 * 60 * 1000)); // 20 hours ago
+            
+            function formatDateTime(date) {
+                var year = date.getUTCFullYear();
+                var month = String(date.getUTCMonth() + 1).padStart(2, '0');
+                var day = String(date.getUTCDate()).padStart(2, '0');
+                var hours = String(date.getUTCHours()).padStart(2, '0');
+                var minutes = String(date.getUTCMinutes()).padStart(2, '0');
+                var seconds = String(date.getUTCSeconds()).padStart(2, '0');
+                
+                return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds + ' UTC';
+            }
+            
+            var threat1Element = document.getElementById('threat1Time');
+            var threat2Element = document.getElementById('threat2Time');
+            var threat3Element = document.getElementById('threat3Time');
+            var threat4Element = document.getElementById('threat4Time');
+            
+            if (threat1Element) threat1Element.textContent = formatDateTime(threat1Date);
+            if (threat2Element) threat2Element.textContent = formatDateTime(threat2Date);
+            if (threat3Element) threat3Element.textContent = formatDateTime(threat3Date);
+            if (threat4Element) threat4Element.textContent = formatDateTime(threat4Date);
+        }
+
+        // Call timeline date update on page load
+        updateTimelineDates();
+
+        // ===================================
+        // MATRIX RAIN EFFECT
+        // ===================================
+        var matrixCanvas = document.getElementById('matrix-canvas');
+        var matrixCtx = matrixCanvas.getContext('2d');
+
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = window.innerHeight;
+
+        var matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        matrixChars = matrixChars.split('');
+
+        var fontSize = 14;
+        var columns = matrixCanvas.width / fontSize;
+        var drops = [];
+
+        for (var i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
+        }
+
+        function drawMatrix() {
+            matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+            matrixCtx.fillStyle = '#00FF41';
+            matrixCtx.font = fontSize + 'px monospace';
+
+            for (var i = 0; i < drops.length; i++) {
+                var text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                matrixCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', function() {
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+            columns = matrixCanvas.width / fontSize;
+            drops = [];
+            for (var i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+            }
+        });
+
+        // ===================================
+        // PARTICLES.JS CONFIGURATION
+        // ===================================
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 100,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: ['#00F0FF', '#00FF41', '#FF0844']
+                },
+                shape: {
+                    type: 'circle'
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true
+                },
+                size: {
+                    value: 3,
+                    random: true
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00F0FF',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 200,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // ===================================
+        // CESIUM GLOBE WITH SATELLITES
+        // ===================================
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg1YmJhMzgiLCJpZCI6ODE5NzEsImlhdCI6MTY0Mjc0ODI2MX0.lVAqnQq5_7vdTTjk7mLGUw6wl2gOj5Gd7fHMi7-gQmw';
+
+        var viewer = new Cesium.Viewer('cesium-container', {
+            imageryProvider: new Cesium.IonImageryProvider({ assetId: 3954 }),
+            baseLayerPicker: false,
+            geocoder: false,
+            homeButton: false,
+            sceneModePicker: false,
+            navigationHelpButton: false,
+            animation: false,
+            timeline: false,
+            fullscreenButton: false,
+            vrButton: false,
+            scene3DOnly: true,
+            requestRenderMode: true,
+            maximumRenderTimeChange: Infinity
+        });
+
+        viewer.scene.globe.enableLighting = true;
+        viewer.scene.globe.atmosphereLightIntensity = 10.0;
+
+        viewer.camera.setView({
+            destination: Cesium.Cartesian3.fromDegrees(-9.598107, 30.427755, 20000000),
+            orientation: {
+                heading: 0.0,
+                pitch: -Math.PI / 2,
+                roll: 0.0
+            }
+        });
+
+        // Add Agadir marker
+        viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(-9.598107, 30.427755),
+            point: {
+                pixelSize: 10,
+                color: Cesium.Color.fromCssColorString('#00F0FF'),
+                outlineColor: Cesium.Color.fromCssColorString('#00FF41'),
+                outlineWidth: 2
+            },
+            label: {
+                text: 'SKYSHIELD HQ\nAGADIR, MOROCCO',
+                font: '14px Rajdhani',
+                fillColor: Cesium.Color.fromCssColorString('#00F0FF'),
+                outlineColor: Cesium.Color.BLACK,
+                outlineWidth: 2,
+                style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                pixelOffset: new Cesium.Cartesian2(0, -20)
+            }
+        });
+
+        // Add orbital paths for satellites
+        function createSatelliteOrbit(altitude, inclination, color, label) {
+            var positions = [];
+            for (var i = 0; i <= 360; i += 5) {
+                var lon = i - 180;
+                var lat = inclination * Math.sin(i * Math.PI / 180);
+                positions.push(Cesium.Cartesian3.fromDegrees(lon, lat, altitude));
+            }
+
+            viewer.entities.add({
+                polyline: {
+                    positions: positions,
+                    width: 2,
+                    material: new Cesium.PolylineGlowMaterialProperty({
+                        glowPower: 0.2,
+                        color: Cesium.Color.fromCssColorString(color)
+                    })
+                }
+            });
+
+            // Add moving satellite
+            var satellitePosition = Cesium.Cartesian3.fromDegrees(0, 0, altitude);
+            viewer.entities.add({
+                position: satellitePosition,
+                point: {
+                    pixelSize: 8,
+                    color: Cesium.Color.fromCssColorString(color),
+                    outlineColor: Cesium.Color.WHITE,
+                    outlineWidth: 2
+                },
+                label: {
+                    text: label,
+                    font: '12px Rajdhani',
+                    fillColor: Cesium.Color.fromCssColorString(color),
+                    outlineColor: Cesium.Color.BLACK,
+                    outlineWidth: 2,
+                    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                    pixelOffset: new Cesium.Cartesian2(0, -15)
+                }
+            });
+        }
+
+        // Create multiple satellite orbits
+        createSatelliteOrbit(550000, 45, '#00F0FF', 'DEFENSE-1');
+        createSatelliteOrbit(800000, -30, '#00FF41', 'RECON-2');
+        createSatelliteOrbit(1200000, 60, '#FF0844', 'COMM-3');
+
+        // Animate camera on scroll
+        var lastScrollY = 0;
+        window.addEventListener('scroll', function() {
+            var scrollY = window.scrollY;
+            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            var scrollProgress = scrollY / maxScroll;
+
+            // Rotate camera around Earth based on scroll
+            var angle = scrollProgress * Math.PI * 2;
+            var distance = 15000000 + Math.sin(scrollProgress * Math.PI) * 5000000;
+            
+            var heading = angle;
+            var pitch = -Math.PI / 4 - (scrollProgress * Math.PI / 8);
+            
+            viewer.camera.setView({
+                destination: Cesium.Cartesian3.fromDegrees(
+                    -9.598107 + Math.cos(angle) * 50,
+                    30.427755 + Math.sin(angle) * 30,
+                    distance
+                ),
+                orientation: {
+                    heading: heading,
+                    pitch: pitch,
+                    roll: 0.0
+                }
+            });
+
+            lastScrollY = scrollY;
+        });
+
+        // ===================================
+        // GSAP SCROLL ANIMATIONS
+        // ===================================
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Navigation scroll effect
+        var nav = document.getElementById('mainNav');
+        ScrollTrigger.create({
+            start: 'top -80',
+            end: 99999,
+            toggleClass: {
+                targets: nav,
+                className: 'scrolled'
+            }
+        });
+
+        // Animate feature cards
+        gsap.utils.toArray('.feature-card').forEach(function(card) {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                    end: 'top 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+        });
+
+        // Animate stats
+        gsap.utils.toArray('.stat-card').forEach(function(stat) {
+            gsap.from(stat, {
+                scrollTrigger: {
+                    trigger: stat,
+                    start: 'top 80%'
+                },
+                opacity: 0,
+                scale: 0.5,
+                duration: 0.6,
+                ease: 'back.out(1.7)'
+            });
+        });
+
+        // Animate terminal windows
+        gsap.utils.toArray('.terminal-window').forEach(function(terminal) {
+            gsap.from(terminal, {
+                scrollTrigger: {
+                    trigger: terminal,
+                    start: 'top 80%'
+                },
+                opacity: 0,
+                x: -100,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+        });
+
+        // Animate section titles
+        gsap.utils.toArray('.section-title').forEach(function(title) {
+            gsap.from(title, {
+                scrollTrigger: {
+                    trigger: title,
+                    start: 'top 80%'
+                },
+                opacity: 0,
+                y: -50,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        // ===================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ===================================
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===================================
+        // DYNAMIC STATUS BAR
+        // ===================================
+        function updateStatusBar() {
+            var threatCount = Math.floor(Math.random() * 10) + 120;
+            var statusValues = document.querySelectorAll('.status-value');
+            if (statusValues[1]) {
+                statusValues[1].textContent = threatCount;
+            }
+        }
+
+        setInterval(updateStatusBar, 5000);
+
+        // ===================================
+        // RESIZE HANDLER
+        // ===================================
+        window.addEventListener('resize', function() {
+            ScrollTrigger.refresh();
+        });
+
+        // ===================================
+        // THREAT HEATMAP GENERATOR
+        // ===================================
+        var heatmapGrid = document.getElementById('heatmapGrid');
+        if (heatmapGrid) {
+            for (var i = 0; i < 400; i++) {
+                var cell = document.createElement('div');
+                cell.className = 'heatmap-cell';
+                
+                var rand = Math.random();
+                if (rand > 0.92) {
+                    cell.classList.add('threat-high');
+                } else if (rand > 0.75) {
+                    cell.classList.add('threat-medium');
+                } else if (rand > 0.5) {
+                    cell.classList.add('threat-low');
+                }
+                
+                heatmapGrid.appendChild(cell);
+            }
+
+            // Update heatmap every 5 seconds
+            setInterval(function() {
+                var cells = heatmapGrid.querySelectorAll('.heatmap-cell');
+                var randomCell = cells[Math.floor(Math.random() * cells.length)];
+                randomCell.className = 'heatmap-cell';
+                
+                var rand = Math.random();
+                if (rand > 0.92) {
+                    randomCell.classList.add('threat-high');
+                } else if (rand > 0.75) {
+                    randomCell.classList.add('threat-medium');
+                } else if (rand > 0.5) {
+                    randomCell.classList.add('threat-low');
+                }
+            }, 300);
+        }
+
+        // ===================================
+        // LIVE CONSOLE UPDATES
+        // ===================================
+        var consoleMessages = [
+            { level: 'info', message: 'Scanning network perimeter for anomalies...' },
+            { level: 'success', message: 'Firewall rules updated successfully' },
+            { level: 'warning', message: 'Unusual traffic pattern detected from IP 45.33.21.88' },
+            { level: 'success', message: 'Intrusion attempt blocked and logged' },
+            { level: 'info', message: 'Running scheduled malware scan on endpoints...' },
+            { level: 'success', message: 'All endpoints clean. No threats detected.' },
+            { level: 'warning', message: 'Certificate expiring in 30 days for domain api.skyshield.ma' },
+            { level: 'info', message: 'Backing up critical data to geo-redundant storage...' },
+            { level: 'success', message: 'Backup completed. 2.4TB transferred.' },
+            { level: 'info', message: 'Analyzing threat intelligence feeds...' },
+            { level: 'warning', message: 'New vulnerability CVE-2025-1234 detected' },
+            { level: 'success', message: 'Patch deployed across all affected systems' },
+            { level: 'info', message: 'Performing security audit on cloud infrastructure...' },
+            { level: 'success', message: 'Audit complete. No issues found.' },
+            { level: 'warning', message: 'Failed login attempts from 3 different IPs' },
+            { level: 'success', message: 'IPs added to blocklist. Threat neutralized.' }
+        ];
+
+        var commandConsole = document.getElementById('commandConsole');
+        var consoleMessageIndex = 6;
+
+        function addConsoleMessage() {
+            if (!commandConsole) return;
+
+            var now = new Date();
+            var timestamp = now.getHours().toString().padStart(2, '0') + ':' + 
+                          now.getMinutes().toString().padStart(2, '0') + ':' + 
+                          now.getSeconds().toString().padStart(2, '0');
+
+            var msgData = consoleMessages[consoleMessageIndex % consoleMessages.length];
+            consoleMessageIndex++;
+
+            var line = document.createElement('div');
+            line.className = 'console-line';
+            line.innerHTML = 
+                '<span class="console-timestamp">' + timestamp + '</span>' +
+                '<span class="console-level ' + msgData.level + '">' + msgData.level.toUpperCase() + '</span>' +
+                '<span class="console-message">' + msgData.message + '</span>';
+
+            commandConsole.appendChild(line);
+
+            // Keep only last 20 messages
+            var lines = commandConsole.querySelectorAll('.console-line');
+            if (lines.length > 20) {
+                commandConsole.removeChild(lines[0]);
+            }
+
+            // Scroll to bottom
+            commandConsole.scrollTop = commandConsole.scrollHeight;
+        }
+
+        setInterval(addConsoleMessage, 4000);
+
+        // ===================================
+        // ANIMATED COUNTERS FOR STATS
+        // ===================================
+        function animateCounter(element, target, duration) {
+            var start = 0;
+            var increment = target / (duration / 16);
+            var current = start;
+
+            var timer = setInterval(function() {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toString();
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toString();
+                }
+            }, 16);
+        }
+
+        // Trigger counter animations when stats come into view
+        var statNumbers = document.querySelectorAll('.stat-number');
+        var statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    entry.target.classList.add('animated');
+                    var text = entry.target.textContent.trim();
+                    
+                    // Extract number from text
+                    if (text === '99.99%') {
+                        entry.target.textContent = '0%';
+                        animateCounter(entry.target, 99.99, 2000);
+                    } else if (text.includes('K')) {
+                        var num = parseInt(text.replace('K+', ''));
+                        entry.target.textContent = '0K+';
+                        var increment = num / 125;
+                        var current = 0;
+                        var timer = setInterval(function() {
+                            current += increment;
+                            if (current >= num) {
+                                entry.target.textContent = num + 'K+';
+                                clearInterval(timer);
+                            } else {
+                                entry.target.textContent = Math.floor(current) + 'K+';
+                            }
+                        }, 16);
+                    } else if (text === '127') {
+                        entry.target.textContent = '0';
+                        animateCounter(entry.target, 127, 2000);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(function(stat) {
+            statsObserver.observe(stat);
+        });
+
+        // ===================================
+        // GLITCH TEXT EFFECT ON HOVER
+        // ===================================
+        var glitchElements = document.querySelectorAll('.glitch');
+        glitchElements.forEach(function(element) {
+            element.setAttribute('data-text', element.textContent);
+        });
+
+        // ===================================
+        // TYPING EFFECT FOR HERO DESCRIPTION
+        // ===================================
+        var heroDescription = document.querySelector('.hero-description');
+        if (heroDescription) {
+            var originalText = heroDescription.textContent;
+            heroDescription.textContent = '';
+            var charIndex = 0;
+
+            function typeWriter() {
+                if (charIndex < originalText.length) {
+                    heroDescription.textContent += originalText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 30);
+                }
+            }
+
+            setTimeout(typeWriter, 1000);
+        }
+
+        // ===================================
+        // RANDOM ALERT BANNER (SIMULATION)
+        // ===================================
+        function showRandomAlert() {
+            var alertBanner = document.createElement('div');
+            alertBanner.className = 'alert-banner active';
+            alertBanner.textContent = '⚠️ THREAT DETECTED: Initiating countermeasures...';
+            document.body.appendChild(alertBanner);
+
+            setTimeout(function() {
+                alertBanner.textContent = '✓ THREAT NEUTRALIZED: All systems secure';
+                setTimeout(function() {
+                    alertBanner.style.opacity = '0';
+                    setTimeout(function() {
+                        document.body.removeChild(alertBanner);
+                    }, 500);
+                }, 3000);
+            }, 3000);
+        }
+
+        // Show random alert every 2 minutes
+        setInterval(showRandomAlert, 120000);
+
+        // ===================================
+        // SATELLITE DATA UPDATES
+        // ===================================
+        function updateSatelliteData() {
+            var satelliteCards = document.querySelectorAll('.satellite-card');
+            satelliteCards.forEach(function(card) {
+                var velocityElement = card.querySelector('.satellite-data-value');
+                if (velocityElement && velocityElement.textContent.includes('km/s')) {
+                    var currentVelocity = parseFloat(velocityElement.textContent);
+                    var newVelocity = (currentVelocity + (Math.random() - 0.5) * 0.1).toFixed(1);
+                    velocityElement.textContent = newVelocity + ' km/s';
+                }
+            });
+        }
+
+        setInterval(updateSatelliteData, 5000);
+
+        // ===================================
+        // PERFORMANCE OPTIMIZATION
+        // ===================================
+        // Reduce animations when page is not visible
+        var isVisible = true;
+        document.addEventListener('visibilitychange', function() {
+            isVisible = !document.hidden;
+            if (isVisible) {
+                // Resume animations
+                matrixCanvas.style.opacity = '0.15';
+            } else {
+                // Pause animations to save resources
+                matrixCanvas.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+</html>
