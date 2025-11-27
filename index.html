@@ -80,21 +80,6 @@
             pointer-events: none;
         }
 
-        /* Cesium Globe Container */
-        #cesium-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .cesium-viewer-bottom {
-            display: none !important;
-        }
-
         /* Scanlines Effect */
         .scanlines {
             position: fixed;
@@ -1778,9 +1763,6 @@
     <!-- Particles Network -->
     <div id="particles-js"></div>
 
-    <!-- Cesium Globe -->
-    <div id="cesium-container"></div>
-
     <!-- Scanlines -->
     <div class="scanlines"></div>
 
@@ -2777,148 +2759,6 @@
                 }
             },
             retina_detect: true
-        });
-
-        // ===================================
-        // CESIUM GLOBE WITH SATELLITES
-        // ===================================
-        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg1YmJhMzgiLCJpZCI6ODE5NzEsImlhdCI6MTY0Mjc0ODI2MX0.lVAqnQq5_7vdTTjk7mLGUw6wl2gOj5Gd7fHMi7-gQmw';
-
-        var viewer = new Cesium.Viewer('cesium-container', {
-            imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }),
-            terrainProvider: new Cesium.CesiumTerrainProvider({
-                url: Cesium.IonResource.fromAssetId(1),
-                requestWaterMask: true,
-                requestVertexNormals: true
-            }),
-            baseLayerPicker: false,
-            geocoder: false,
-            homeButton: false,
-            sceneModePicker: false,
-            navigationHelpButton: false,
-            animation: false,
-            timeline: false,
-            fullscreenButton: false,
-            vrButton: false,
-            scene3DOnly: true,
-            requestRenderMode: true,
-            maximumRenderTimeChange: Infinity
-        });
-
-        viewer.scene.globe.enableLighting = true;
-        viewer.scene.globe.atmosphereLightIntensity = 10.0;
-        viewer.scene.globe.showGroundAtmosphere = true;
-        viewer.scene.globe.atmosphereBrightnessShift = 0.3;
-        viewer.scene.globe.atmosphereSaturationShift = 0.1;
-        viewer.scene.fog.enabled = true;
-        viewer.scene.fog.density = 0.0002;
-        viewer.scene.fog.screenSpaceErrorFactor = 2.0;
-
-        viewer.camera.setView({
-            destination: Cesium.Cartesian3.fromDegrees(-9.598107, 30.427755, 20000000),
-            orientation: {
-                heading: 0.0,
-                pitch: -Math.PI / 2,
-                roll: 0.0
-            }
-        });
-
-        // Add Agadir marker
-        viewer.entities.add({
-            position: Cesium.Cartesian3.fromDegrees(-9.598107, 30.427755),
-            point: {
-                pixelSize: 10,
-                color: Cesium.Color.fromCssColorString('#00F0FF'),
-                outlineColor: Cesium.Color.fromCssColorString('#00FF41'),
-                outlineWidth: 2
-            },
-            label: {
-                text: 'SKYSHIELD HQ\nAGADIR, MOROCCO',
-                font: '14px Rajdhani',
-                fillColor: Cesium.Color.fromCssColorString('#00F0FF'),
-                outlineColor: Cesium.Color.BLACK,
-                outlineWidth: 2,
-                style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
-                pixelOffset: new Cesium.Cartesian2(0, -20)
-            }
-        });
-
-        // Add orbital paths for satellites
-        function createSatelliteOrbit(altitude, inclination, color, label) {
-            var positions = [];
-            for (var i = 0; i <= 360; i += 5) {
-                var lon = i - 180;
-                var lat = inclination * Math.sin(i * Math.PI / 180);
-                positions.push(Cesium.Cartesian3.fromDegrees(lon, lat, altitude));
-            }
-
-            viewer.entities.add({
-                polyline: {
-                    positions: positions,
-                    width: 2,
-                    material: new Cesium.PolylineGlowMaterialProperty({
-                        glowPower: 0.2,
-                        color: Cesium.Color.fromCssColorString(color)
-                    })
-                }
-            });
-
-            // Add moving satellite
-            var satellitePosition = Cesium.Cartesian3.fromDegrees(0, 0, altitude);
-            viewer.entities.add({
-                position: satellitePosition,
-                point: {
-                    pixelSize: 8,
-                    color: Cesium.Color.fromCssColorString(color),
-                    outlineColor: Cesium.Color.WHITE,
-                    outlineWidth: 2
-                },
-                label: {
-                    text: label,
-                    font: '12px Rajdhani',
-                    fillColor: Cesium.Color.fromCssColorString(color),
-                    outlineColor: Cesium.Color.BLACK,
-                    outlineWidth: 2,
-                    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-                    pixelOffset: new Cesium.Cartesian2(0, -15)
-                }
-            });
-        }
-
-        // Create multiple satellite orbits
-        createSatelliteOrbit(550000, 45, '#00F0FF', 'DEFENSE-1');
-        createSatelliteOrbit(800000, -30, '#00FF41', 'RECON-2');
-        createSatelliteOrbit(1200000, 60, '#FF0844', 'COMM-3');
-
-        // Animate camera on scroll
-        var lastScrollY = 0;
-        window.addEventListener('scroll', function() {
-            var scrollY = window.scrollY;
-            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            var scrollProgress = scrollY / maxScroll;
-
-            // Rotate camera around Earth based on scroll
-            var angle = scrollProgress * Math.PI * 2;
-            var distance = 15000000 + Math.sin(scrollProgress * Math.PI) * 5000000;
-            
-            var heading = angle;
-            var pitch = -Math.PI / 4 - (scrollProgress * Math.PI / 8);
-            
-            viewer.camera.setView({
-                destination: Cesium.Cartesian3.fromDegrees(
-                    -9.598107 + Math.cos(angle) * 50,
-                    30.427755 + Math.sin(angle) * 30,
-                    distance
-                ),
-                orientation: {
-                    heading: heading,
-                    pitch: pitch,
-                    roll: 0.0
-                }
-            });
-
-            lastScrollY = scrollY;
         });
 
         // ===================================
