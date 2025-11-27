@@ -1827,10 +1827,14 @@
     <div class="data-stream">
         <div class="stream-line">01101000 01110100 01110100 01110000 01110011 00111010 00101111 00101111</div>
         <div class="stream-line">ENCRYPT_AES256::ACTIVE | FIREWALL::ENABLED | IDS::MONITORING</div>
+        <div class="stream-line">防火墙::激活 | ШИФРОВАНИЕ::РАБОТАЕТ | جدار الحماية::نشط</div>
         <div class="stream-line">PKT_IN: 145.23.67.89:443 > 192.168.1.1:8080 [SYN] SEQ=1234567</div>
         <div class="stream-line">THREAT_LEVEL: LOW | INCIDENTS: 0 | ALERTS: 3 | LATENCY: 12ms</div>
+        <div class="stream-line">תצפית::פעילה | 監視システム::オンライン | 감시::작동중</div>
         <div class="stream-line">AUTH_SUCCESS: user@skyshield.ma | TOKEN: a7f8d9e3c2b1</div>
+        <div class="stream-line">AUTHENTIFICATION::SUCCÈS | AUTENTICACIÓN::ÉXITO | AUTENTICAZIONE::RIUSCITA</div>
         <div class="stream-line">01101000 01110100 01110100 01110000 01110011 00111010 00101111 00101111</div>
+        <div class="stream-line">NATO::DEFCON-3 | OTAN::PRÊT | الناتو::جاهز | НАТО::ГОТОВ</div>
     </div>
 
     <!-- Navigation -->
@@ -1883,13 +1887,16 @@
                     </div>
                     <div class="terminal-body">
                         <p><span class="terminal-prompt">root@skyshield:~$</span> <span class="terminal-command">./initialize_defense_systems.sh</span></p>
-                        <p>Loading AI defense protocols...</p>
+                        <p>正在加载AI防御协议... | Загрузка протоколов ИИ... | Loading AI defense protocols...</p>
                         <p>✓ Neural network threat detection: ONLINE</p>
                         <p>✓ Quantum encryption modules: ENABLED</p>
                         <p>✓ Zero-trust architecture: ACTIVE</p>
+                        <p>✓ نظام الكشف عن التهديدات العصبية: نشط</p>
                         <p>✓ Real-time countermeasures: DEPLOYED</p>
+                        <p>✓ Módulos de encriptación cuántica: ACTIVADOS</p>
                         <p>✓ Global threat intelligence: SYNCHRONIZED</p>
-                        <p style="color: var(--military-green); font-weight: bold;">[SUCCESS] All defense systems operational</p>
+                        <p>✓ ニューラル脅威検出システム: オンライン</p>
+                        <p style="color: var(--military-green); font-weight: bold;">[SUCCESS] All defense systems operational | Tous les systèmes opérationnels | جميع الأنظمة تعمل</p>
                         <p><span class="terminal-prompt">root@skyshield:~$</span> <span style="animation: blink 1s infinite;">_</span></p>
                     </div>
                 </div>
@@ -2083,14 +2090,17 @@
                     </div>
                     <div class="terminal-body">
                         <p><span class="terminal-prompt">drone@skyshield:~$</span> <span class="terminal-command">./deploy_autonomous_fleet.sh</span></p>
-                        <p>Initializing drone swarm protocols...</p>
+                        <p>初始化无人机群协议... | Инициализация роя БПЛА... | Initializing drone swarm protocols...</p>
                         <p>✓ AI navigation systems: CALIBRATED</p>
                         <p>✓ Swarm intelligence network: SYNCHRONIZED</p>
+                        <p>✓ 실시간 원격 측정: 스트리밍 중</p>
                         <p>✓ Real-time telemetry: STREAMING</p>
-                        <p>✓ Surveillance systems: ACTIVE</p>
+                        <p>✓ Surveillance systems: ACTIVE | أنظمة المراقبة: نشطة</p>
                         <p>✓ Communication encryption: ENABLED</p>
-                        <p style="color: var(--military-green); font-weight: bold;">[SUCCESS] Fleet ready for deployment</p>
+                        <p>✓ Cryptage des communications: ACTIVÉ</p>
+                        <p style="color: var(--military-green); font-weight: bold;">[SUCCESS] Fleet ready for deployment | Flota lista para el despliegue | 舰队准备部署</p>
                         <p>Fleet size: 250 units | Coverage: 500km² | Endurance: 48 hours</p>
+                        <p>التغطية: 500 كم² | Выносливость: 48 часов | 耐久性: 48小時</p>
                         <p><span class="terminal-prompt">drone@skyshield:~$</span> <span style="animation: blink 1s infinite;">_</span></p>
                     </div>
                 </div>
@@ -2775,10 +2785,9 @@
         Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg1YmJhMzgiLCJpZCI6ODE5NzEsImlhdCI6MTY0Mjc0ODI2MX0.lVAqnQq5_7vdTTjk7mLGUw6wl2gOj5Gd7fHMi7-gQmw';
 
         var viewer = new Cesium.Viewer('cesium-container', {
-            imageryProvider: Cesium.createWorldImagery({
-                style: Cesium.IonWorldImageryStyle.AERIAL_WITH_LABELS
-            }),
-            terrainProvider: Cesium.createWorldTerrain({
+            imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }),
+            terrainProvider: new Cesium.CesiumTerrainProvider({
+                url: Cesium.IonResource.fromAssetId(1),
                 requestWaterMask: true,
                 requestVertexNormals: true
             }),
