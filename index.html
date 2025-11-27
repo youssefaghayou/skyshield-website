@@ -2775,7 +2775,13 @@
         Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5N2UyMjcwOS00MDY1LTQxYjEtYjZjMy00YTU0ZTg1YmJhMzgiLCJpZCI6ODE5NzEsImlhdCI6MTY0Mjc0ODI2MX0.lVAqnQq5_7vdTTjk7mLGUw6wl2gOj5Gd7fHMi7-gQmw';
 
         var viewer = new Cesium.Viewer('cesium-container', {
-            imageryProvider: new Cesium.IonImageryProvider({ assetId: 3954 }),
+            imageryProvider: Cesium.createWorldImagery({
+                style: Cesium.IonWorldImageryStyle.AERIAL_WITH_LABELS
+            }),
+            terrainProvider: Cesium.createWorldTerrain({
+                requestWaterMask: true,
+                requestVertexNormals: true
+            }),
             baseLayerPicker: false,
             geocoder: false,
             homeButton: false,
@@ -2792,6 +2798,12 @@
 
         viewer.scene.globe.enableLighting = true;
         viewer.scene.globe.atmosphereLightIntensity = 10.0;
+        viewer.scene.globe.showGroundAtmosphere = true;
+        viewer.scene.globe.atmosphereBrightnessShift = 0.3;
+        viewer.scene.globe.atmosphereSaturationShift = 0.1;
+        viewer.scene.fog.enabled = true;
+        viewer.scene.fog.density = 0.0002;
+        viewer.scene.fog.screenSpaceErrorFactor = 2.0;
 
         viewer.camera.setView({
             destination: Cesium.Cartesian3.fromDegrees(-9.598107, 30.427755, 20000000),
