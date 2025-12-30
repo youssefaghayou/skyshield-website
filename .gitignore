@@ -1,0 +1,15 @@
+# Local development
+.DS_Store
+*.log
+*.swp
+*.swo
+*~
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+Thumbs.db
