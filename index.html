@@ -255,11 +255,11 @@
 
         .logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: var(--radar-blue);
-            text-shadow: 0 0 20px var(--radar-blue);
-            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px var(--radar-blue);
+            letter-spacing: 0.05em;
         }
 
         .nav-links {
@@ -369,21 +369,21 @@
 
         .glitch {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 12vw, 10rem);
+            font-size: clamp(2rem, 8vw, 5.5rem);
             font-weight: 900;
             color: var(--radar-blue);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             position: relative;
             animation: glitch-text 5s infinite;
         }
 
         @keyframes glitch-text {
             0%, 90%, 100% {
-                text-shadow: 
+                text-shadow:
+                    0 0 15px var(--radar-blue),
                     0 0 30px var(--radar-blue),
-                    0 0 60px var(--radar-blue),
-                    0 0 100px var(--radar-blue);
+                    0 0 45px var(--radar-blue);
             }
             92% {
                 text-shadow: 
@@ -1689,10 +1689,10 @@
 
         .loading-logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 900;
             color: var(--radar-blue);
-            text-shadow: 0 0 40px var(--radar-blue);
+            text-shadow: 0 0 20px var(--radar-blue);
             animation: loading-pulse 1.5s ease-in-out infinite;
         }
 
@@ -1750,7 +1750,7 @@
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">SKYSHIELD</div>
+        <div class="loading-logo">SKYSHIELD TECHNOLOGY</div>
         <div class="loading-bar">
             <div class="loading-progress"></div>
         </div>
@@ -1822,7 +1822,7 @@
     <!-- Navigation -->
     <nav id="mainNav">
         <div class="nav-container">
-            <div class="logo">SKYSHIELD</div>
+            <div class="logo">SKYSHIELD TECHNOLOGY</div>
             <ul class="nav-links">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#defense">Defense</a></li>
@@ -1838,7 +1838,7 @@
         <!-- HERO SECTION -->
         <section id="hero">
             <div class="hero-content">
-                <h1 class="glitch" data-text="SKYSHIELD">SKYSHIELD</h1>
+                <h1 class="glitch" data-text="SKYSHIELD TECHNOLOGY">SKYSHIELD TECHNOLOGY</h1>
                 <div class="hero-subtitle">CYBER WARFARE COMMAND CENTER</div>
                 <p class="hero-description">
                     Elite AI-Driven Cybersecurity | Autonomous Defense Systems | Global Threat Intelligence
@@ -2454,7 +2454,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>SkyShield</h3>
+                    <h3>SkyShield Technology</h3>
                     <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.8;">
                         Elite cybersecurity and autonomous defense systems. 
                         Protecting digital infrastructure worldwide from Agadir, Morocco.
