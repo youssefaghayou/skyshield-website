@@ -1,2 +1,2 @@
 # skyshield-website
-SkyShield Technologies - Official Website
+SkyShield Technology - Official Website
