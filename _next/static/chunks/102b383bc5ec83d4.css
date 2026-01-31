@@ -4,9 +4,21 @@
 
 
 
-/* MASSIVE SPACING BETWEEN SECTIONS */
+
+/* Add more space below the 4 stat cards in About section */
+.grid.grid-cols-2.lg\:grid-cols-4 {
+    margin-bottom: 6rem !important;
+}
+
+@media (min-width: 64rem) {
+    .grid.grid-cols-2.lg\:grid-cols-4 {
+        margin-bottom: 8rem !important;
+    }
+}
+
+/* SECTION SPACING - reasonable breathing room between sections */
 section {
-    margin-bottom: 20rem !important;
+    margin-bottom: 8rem !important;
 }
 
 section:last-of-type {
