@@ -7,12 +7,12 @@
 
 /* Add more space below the 4 stat cards in About section */
 .grid.grid-cols-2.lg\:grid-cols-4 {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
 }
 
 @media (min-width: 64rem) {
     .grid.grid-cols-2.lg\:grid-cols-4 {
-        margin-bottom: 2rem !important;
+        margin-bottom: 0.5rem !important;
     }
 }
 
