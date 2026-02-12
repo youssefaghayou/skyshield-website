@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SkyShield Technology | Cybersecurity</title>
-  <meta name="description" content="Cybersecurity capabilities at SkyShield: offensive security, defensive operations, cloud protection, incident response, and security awareness." />
+  <meta name="description" content="Cybersecurity domains at SkyShield: offensive security, defensive operations, cloud & application security, and incident response & forensics." />
   <link rel="canonical" href="https://skyshieldtechnology.com/cybersecurity.html" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <style>
-    :root{--bg:#f6f2ea;--surface:#fffcf7;--text:#1f232b;--muted:#596173;--line:#ddd5c9;--brand:#0e8f72;--brand2:#d06a2a;--ink:#202634;--max:1180px}
+    :root{--bg:#f6f2ea;--surface:#fffcf7;--text:#1f232b;--muted:#596173;--line:#ddd5c9;--ink:#202634;--max:1180px}
     *{box-sizing:border-box} body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
     .container{width:min(var(--max),calc(100% - 32px));margin:auto}
     .site-header{position:sticky;top:0;z-index:20;background:rgba(246,242,234,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -20,12 +20,15 @@
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--ink);color:#fff !important;text-decoration:none;font-weight:700}
     main{padding:62px 0}
     h1{font-size:clamp(32px,6vw,64px);line-height:1.05;margin:0 0 10px;color:var(--ink)}
-    .lead{max-width:72ch;color:var(--muted);margin:0 0 30px}
+    .lead{max-width:78ch;color:var(--muted);margin:0 0 30px}
     .matrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-    .block{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .block-link{text-decoration:none;color:inherit;display:block}
+    .block{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;transition:transform .18s ease, box-shadow .18s ease,border-color .18s ease;height:100%}
+    .block:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(31,35,43,.08);border-color:#cdbfae}
     .block h2{margin:0 0 8px;font-size:20px;color:var(--ink)}
     .block ul{margin:0;padding-left:18px;color:var(--muted)}
-    .cta{margin-top:28px;padding:20px;border-radius:14px;background:linear-gradient(130deg,rgba(14,143,114,.12),rgba(208,106,42,.10));border:1px solid var(--line)}
+    .go{display:inline-block;margin-top:10px;font-weight:700;color:var(--ink)}
+    .cta{margin-top:28px;padding:20px;border-radius:14px;background:#fff8f0;border:1px solid var(--line)}
     footer{margin-top:56px;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
     @media (max-width:980px){.matrix{grid-template-columns:1fr}}
   </style>
@@ -47,42 +50,54 @@
 
   <main>
     <div class="container">
-      <h1>Cybersecurity Capabilities</h1>
-      <p class="lead">This page focuses on your cybersecurity delivery model so clients understand technical depth, response readiness, and coverage.</p>
+      <h1>Cybersecurity Domains</h1>
+      <p class="lead">Select a domain below to open its dedicated page with the complete service catalog extracted from your SkyShield architecture file.</p>
 
       <section class="matrix" aria-label="Cybersecurity matrix">
-        <article class="block">
-          <h2>Offensive Security</h2>
-          <ul>
-            <li>Web, API, mobile, and network pentesting</li>
-            <li>Attack-path and privilege escalation simulation</li>
-            <li>Red teaming scenarios for business-critical assets</li>
-          </ul>
-        </article>
-        <article class="block">
-          <h2>Defensive Operations</h2>
-          <ul>
-            <li>24/7 SOC monitoring and MDR workflows</li>
-            <li>Threat hunting and anomaly detection</li>
-            <li>Playbooks for rapid containment and escalation</li>
-          </ul>
-        </article>
-        <article class="block">
-          <h2>Cloud & Application Security</h2>
-          <ul>
-            <li>Cloud posture management and misconfiguration control</li>
-            <li>Identity and access governance</li>
-            <li>DevSecOps and secure release integrations</li>
-          </ul>
-        </article>
-        <article class="block">
-          <h2>Incident Readiness & Forensics</h2>
-          <ul>
-            <li>Incident response planning and tabletop drills</li>
-            <li>Forensic evidence handling and timeline reconstruction</li>
-            <li>Post-incident hardening recommendations</li>
-          </ul>
-        </article>
+        <a class="block-link" href="cybersecurity-offensive.html">
+          <article class="block">
+            <h2>Offensive Security</h2>
+            <ul>
+              <li>Web, API, mobile, and network pentesting</li>
+              <li>Red teaming and attack simulation</li>
+              <li>Code and app security testing</li>
+            </ul>
+            <span class="go">Open domain page</span>
+          </article>
+        </a>
+        <a class="block-link" href="cybersecurity-defensive.html">
+          <article class="block">
+            <h2>Defensive Operations</h2>
+            <ul>
+              <li>SOC, MDR, and threat detection engineering</li>
+              <li>Threat hunting and intelligence workflows</li>
+              <li>Phishing, awareness, and resilience programs</li>
+            </ul>
+            <span class="go">Open domain page</span>
+          </article>
+        </a>
+        <a class="block-link" href="cybersecurity-cloud.html">
+          <article class="block">
+            <h2>Cloud & Application Security</h2>
+            <ul>
+              <li>CSPM and cloud posture hardening</li>
+              <li>IAM audits and DevSecOps integration</li>
+              <li>Supply-chain and data privacy controls</li>
+            </ul>
+            <span class="go">Open domain page</span>
+          </article>
+        </a>
+        <a class="block-link" href="cybersecurity-incident-forensics.html">
+          <article class="block">
+            <h2>Incident Response & Forensics</h2>
+            <ul>
+              <li>Incident handling and containment workflows</li>
+              <li>Digital forensics and remote triage</li>
+              <li>Malware analysis and evidence support</li>
+            </ul>
+            <span class="go">Open domain page</span>
+          </article>
+        </a>
       </section>
 
       <section class="cta">
