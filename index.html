@@ -38,9 +38,9 @@
       --space-4: clamp(44px, 6vw, 86px);
       --space-5: clamp(70px, 9vw, 130px);
       --max: 1180px;
-      --glass-warm: rgba(214, 171, 128, 0.20);
-      --glass-cool: rgba(125, 165, 191, 0.18);
-      --glass-shadow: rgba(32, 38, 52, 0.14);
+      --aurora-1: rgba(88, 128, 188, 0.24);
+      --aurora-2: rgba(131, 98, 182, 0.22);
+      --aurora-3: rgba(53, 164, 129, 0.20);
     }
 
     * { box-sizing: border-box; }
@@ -63,11 +63,13 @@
       z-index: -2;
       pointer-events: none;
       background:
-        radial-gradient(920px 620px at 8% -8%, var(--glass-warm), transparent 62%),
-        radial-gradient(980px 640px at 96% -16%, var(--glass-cool), transparent 60%),
-        radial-gradient(1100px 720px at 54% 118%, var(--glass-shadow), transparent 70%),
-        linear-gradient(180deg, #f8f7f3 0%, #efede9 56%, #e7e6e1 100%);
-      filter: saturate(104%) contrast(101%);
+        radial-gradient(860px 560px at 12% 8%, var(--aurora-1), transparent 62%),
+        radial-gradient(940px 600px at 86% 12%, var(--aurora-2), transparent 64%),
+        radial-gradient(980px 620px at 56% 92%, var(--aurora-3), transparent 68%),
+        linear-gradient(180deg, #f5f4f0 0%, #ecebe7 56%, #e5e4df 100%);
+      background-size: 120% 120%, 120% 120%, 120% 120%, 100% 100%;
+      animation: auroraShift 32s ease-in-out infinite alternate;
+      filter: saturate(108%) contrast(101%);
     }
 
     body::after {
@@ -79,6 +81,18 @@
       opacity: 0.08;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
       background-size: 220px 220px;
+    }
+
+    @keyframes auroraShift {
+      0% {
+        background-position: 8% 10%, 88% 10%, 52% 90%, 0% 0%;
+      }
+      50% {
+        background-position: 16% 18%, 80% 6%, 60% 84%, 0% 0%;
+      }
+      100% {
+        background-position: 10% 6%, 90% 16%, 48% 96%, 0% 0%;
+      }
     }
 
     .skip-link {
