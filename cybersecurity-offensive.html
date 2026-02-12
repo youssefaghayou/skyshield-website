@@ -19,6 +19,9 @@
     .links a:hover{color:var(--ink)}
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--ink);color:#fff !important;text-decoration:none;font-weight:700}
     main{padding:62px 0}
+    .back-link{display:inline-flex;align-items:center;gap:8px;color:#000;text-decoration:none;cursor:pointer;margin-top:24px;margin-bottom:16px;opacity:.92;transition:opacity .16s ease,color .16s ease}
+    .back-link:hover{opacity:1;color:#111}
+    .back-link svg{width:18px;height:18px;display:block;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
     h1{font-size:clamp(32px,6vw,58px);line-height:1.05;margin:0 0 10px;color:var(--ink)}
     .lead{max-width:78ch;color:var(--muted);margin:0 0 28px}
     .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
@@ -45,6 +48,9 @@
   </header>
   <main>
     <div class="container">
+            <a class="back-link" href="cybersecurity.html" aria-label="Back to cybersecurity domains">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/><path d="M9 12h10"/></svg>
+      </a>
       <h1>Offensive Security Services</h1>
       <p class="lead">Complete offensive catalog extracted from your architecture portfolio, focused on attack simulation, validation, and technical hardening.</p>
       <section class="grid" aria-label="Offensive Security Services services">
