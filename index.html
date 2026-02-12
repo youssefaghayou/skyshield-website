@@ -38,9 +38,9 @@
       --space-4: clamp(44px, 6vw, 86px);
       --space-5: clamp(70px, 9vw, 130px);
       --max: 1180px;
-      --mesh-1: rgba(208, 106, 42, 0.18);
-      --mesh-2: rgba(14, 143, 114, 0.16);
-      --mesh-3: rgba(32, 38, 52, 0.08);
+      --mesh-1: rgba(208, 106, 42, 0.32);
+      --mesh-2: rgba(14, 143, 114, 0.28);
+      --mesh-3: rgba(32, 38, 52, 0.16);
     }
 
     * { box-sizing: border-box; }
@@ -63,11 +63,11 @@
       z-index: -2;
       pointer-events: none;
       background:
-        radial-gradient(950px 580px at -5% 0%, var(--mesh-1), transparent 62%),
-        radial-gradient(920px 560px at 104% -8%, var(--mesh-2), transparent 60%),
-        radial-gradient(780px 520px at 50% 112%, var(--mesh-3), transparent 64%),
-        linear-gradient(180deg, rgba(255, 252, 247, 0.82), rgba(246, 242, 234, 0.92));
-      filter: saturate(110%);
+        radial-gradient(1080px 640px at -8% -6%, var(--mesh-1), transparent 58%),
+        radial-gradient(1020px 600px at 108% -10%, var(--mesh-2), transparent 56%),
+        radial-gradient(860px 560px at 50% 114%, var(--mesh-3), transparent 60%),
+        linear-gradient(180deg, rgba(255, 252, 247, 0.74), rgba(246, 242, 234, 0.88));
+      filter: saturate(122%) contrast(104%);
     }
 
     body::after {
@@ -76,7 +76,7 @@
       inset: 0;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.06;
+      opacity: 0.10;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
       background-size: 220px 220px;
     }
