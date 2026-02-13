@@ -367,7 +367,26 @@
       gap: var(--space-2);
     }
 
+    .service-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
     .service-card { padding: 18px; }
+
+    .service-link .service-card {
+      height: 100%;
+      transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+    }
+
+    .service-link:hover .service-card,
+    .service-link:focus-visible .service-card {
+      cursor: pointer;
+      border-color: rgba(14, 143, 114, 0.4);
+      box-shadow: 0 18px 38px rgba(18, 23, 33, 0.14);
+      transform: translateY(-2px);
+    }
 
     .service-card h3 {
       margin: 0 0 8px;
@@ -657,12 +676,12 @@
         </header>
 
         <div class="services-grid">
-          <article class="panel service-card reveal"><h3>Cybersecurity Services</h3><p>Penetration testing, vulnerability assessment, SOC and MDR, incident response, and compliance support.</p></article>
-          <article class="panel service-card reveal"><h3>AI Automation and AI Systems Engineering</h3><p>Build AI agents and automation workflows, and deploy production ready AI systems integrated into business operations.</p></article>
-          <article class="panel service-card reveal"><h3>Cloud Architecture and Cloud Engineering</h3><p>Design and deploy cloud infrastructure, optimize performance and cost, and provide ongoing managed IT and cloud infrastructure support.</p></article>
-          <article class="panel service-card reveal"><h3>Web and Mobile Application Development</h3><p>Develop modern web platforms and mobile apps built for performance, scalability, and security.</p></article>
-          <article class="panel service-card reveal"><h3>Blockchain and Digital Asset Security</h3><p>Smart contract reviews and security for blockchain platforms and digital asset infrastructure.</p></article>
-          <article class="panel service-card reveal"><h3>Robotics and Autonomous Systems Security</h3><p>Security for IoT, embedded devices, industrial automation, and autonomous systems.</p></article>
+          <a class="service-link reveal" href="cybersecurity.html"><article class="panel service-card"><h3>Cybersecurity Services</h3><p>Penetration testing, vulnerability assessment, SOC and MDR, incident response, and compliance support.</p></article></a>
+          <a class="service-link reveal" href="ai-automation.html"><article class="panel service-card"><h3>AI Automation and AI Systems Engineering</h3><p>Build AI agents and automation workflows, and deploy production ready AI systems integrated into business operations.</p></article></a>
+          <a class="service-link reveal" href="cloud.html"><article class="panel service-card"><h3>Cloud Architecture and Cloud Engineering</h3><p>Design and deploy cloud infrastructure, optimize performance and cost, and provide ongoing managed IT and cloud infrastructure support.</p></article></a>
+          <a class="service-link reveal" href="development.html"><article class="panel service-card"><h3>Web and Mobile Application Development</h3><p>Develop modern web platforms and mobile apps built for performance, scalability, and security.</p></article></a>
+          <a class="service-link reveal" href="blockchain.html"><article class="panel service-card"><h3>Blockchain and Digital Asset Security</h3><p>Smart contract reviews and security for blockchain platforms and digital asset infrastructure.</p></article></a>
+          <a class="service-link reveal" href="robotics.html"><article class="panel service-card"><h3>Robotics and Autonomous Systems Security</h3><p>Security for IoT, embedded devices, industrial automation, and autonomous systems.</p></article></a>
         </div>
       </div>
     </section>

@@ -22,7 +22,10 @@
     h1{font-size:clamp(32px,6vw,64px);line-height:1.05;margin:0 0 10px;color:var(--ink)}
     .lead{max-width:72ch;color:var(--muted);margin:0 0 28px}
     .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card-link{display:block;text-decoration:none;color:inherit}
     .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+    .card-link .card{height:100%;transition:box-shadow .2s ease,transform .2s ease,border-color .2s ease}
+    .card-link:hover .card,.card-link:focus-visible .card{cursor:pointer;border-color:rgba(14,143,114,.4);box-shadow:0 18px 38px rgba(18,23,33,.14);transform:translateY(-2px)}
     .card h2{margin:0 0 8px;font-size:20px;color:var(--ink)}
     .card p{margin:0;color:var(--muted)}
     .process{margin-top:36px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
@@ -53,12 +56,12 @@
       <p class="lead">This page gives your clients a clear view of the main SkyShield services and expected outcomes. Use this as your central services page for proposals and sales calls.</p>
 
       <section class="grid" aria-label="Service cards">
-        <article class="card"><h2>Cybersecurity Services</h2><p>Penetration testing, vulnerability assessment, SOC and MDR, incident response, and compliance support.</p></article>
-        <article class="card"><h2>AI Automation and AI Systems Engineering</h2><p>Build AI agents and automation workflows, and deploy production ready AI systems integrated into business operations.</p></article>
-        <article class="card"><h2>Cloud Architecture and Cloud Engineering</h2><p>Design and deploy cloud infrastructure, optimize performance and cost, and provide ongoing managed IT and cloud infrastructure support.</p></article>
-        <article class="card"><h2>Web and Mobile Application Development</h2><p>Develop modern web platforms and mobile apps built for performance, scalability, and security.</p></article>
-        <article class="card"><h2>Blockchain and Digital Asset Security</h2><p>Smart contract reviews and security for blockchain platforms and digital asset infrastructure.</p></article>
-        <article class="card"><h2>Robotics and Autonomous Systems Security</h2><p>Security for IoT, embedded devices, industrial automation, and autonomous systems.</p></article>
+        <a class="card-link" href="cybersecurity.html"><article class="card"><h2>Cybersecurity Services</h2><p>Penetration testing, vulnerability assessment, SOC and MDR, incident response, and compliance support.</p></article></a>
+        <a class="card-link" href="ai-automation.html"><article class="card"><h2>AI Automation and AI Systems Engineering</h2><p>Build AI agents and automation workflows, and deploy production ready AI systems integrated into business operations.</p></article></a>
+        <a class="card-link" href="cloud.html"><article class="card"><h2>Cloud Architecture and Cloud Engineering</h2><p>Design and deploy cloud infrastructure, optimize performance and cost, and provide ongoing managed IT and cloud infrastructure support.</p></article></a>
+        <a class="card-link" href="development.html"><article class="card"><h2>Web and Mobile Application Development</h2><p>Develop modern web platforms and mobile apps built for performance, scalability, and security.</p></article></a>
+        <a class="card-link" href="blockchain.html"><article class="card"><h2>Blockchain and Digital Asset Security</h2><p>Smart contract reviews and security for blockchain platforms and digital asset infrastructure.</p></article></a>
+        <a class="card-link" href="robotics.html"><article class="card"><h2>Robotics and Autonomous Systems Security</h2><p>Security for IoT, embedded devices, industrial automation, and autonomous systems.</p></article></a>
       </section>
 
       <section class="process" aria-label="Engagement process">
