@@ -702,12 +702,38 @@
             <label for="bk-service">Service</label>
             <select id="bk-service" name="service" required>
               <option value="" selected disabled>Select a service</option>
-              <option>Penetration Testing</option>
-              <option>Vulnerability Assessment</option>
-              <option>SOC / MDR</option>
-              <option>Incident Response</option>
-              <option>Cloud Security</option>
-              <option>GRC / Compliance</option>
+              <optgroup label="Offensive Security">
+                <option>Web Application Penetration Testing</option>
+                <option>API Security Testing</option>
+                <option>Mobile Application Penetration Testing</option>
+                <option>Network Penetration Testing (Internal/External/Wi-Fi)</option>
+                <option>Red Teaming</option>
+                <option>Purple Teaming</option>
+                <option>Secure Code Review (SAST/DAST)</option>
+              </optgroup>
+              <optgroup label="Defensive Operations">
+                <option>SOC / MDR</option>
+                <option>Threat Hunting</option>
+                <option>Threat Intelligence</option>
+                <option>Phishing Simulation & Security Awareness</option>
+                <option>Ransomware Readiness Assessment</option>
+                <option>Dark Web & Data Leak Monitoring</option>
+              </optgroup>
+              <optgroup label="Cloud & Application Security">
+                <option>Cloud Security Posture Management (CSPM)</option>
+                <option>IAM Security Audit</option>
+                <option>DevSecOps Integration</option>
+                <option>Supply Chain / Third-Party Risk Assessment</option>
+                <option>Data Privacy & GDPR/CNDP Advisory</option>
+                <option>GRC / Compliance (ISO 27001, NIST)</option>
+              </optgroup>
+              <optgroup label="Incident Response & Forensics">
+                <option>Incident Response</option>
+                <option>Digital Forensics (DFIR)</option>
+                <option>Malware Analysis & Reverse Engineering</option>
+                <option>Forensics-as-a-Service (Remote Triage)</option>
+              </optgroup>
+              <option>Other</option>
             </select>
           </div>
           <div class="field field-full">
