@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SkyShield Technology | Contact</title>
-  <meta name="description" content="Contact SkyShield Technology in Agadir, Morocco. Email us for cybersecurity services and consultation." />
-  <link rel="canonical" href="https://skyshieldtechnology.com/contact.html" />
+  <title>SkyShield Technology | About</title>
+  <meta name="description" content="Learn about SkyShield Technology's background, architecture, AI automation model, sponsors, roadmap, and leadership." />
+  <link rel="canonical" href="https://skyshieldtechnology.com/about.html" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
@@ -15,8 +15,6 @@
       --text: #1f232b;
       --muted: #596173;
       --line: rgba(210, 201, 188, 0.62);
-      --brand: #0e8f72;
-      --brand-2: #d06a2a;
       --ink: #202634;
       --shadow: 0 16px 40px rgba(18, 23, 33, 0.08);
       --radius: 16px;
@@ -30,7 +28,6 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -140,9 +137,9 @@
       max-width: 74ch;
     }
 
-    .section-head h2 {
+    .section-head h1 {
       margin: 0 0 10px;
-      font-size: clamp(28px, 4vw, 46px);
+      font-size: clamp(32px, 5vw, 56px);
       line-height: 1.1;
       color: var(--ink);
     }
@@ -160,6 +157,28 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
       padding: 20px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .about-grid h2 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 21px;
+    }
+
+    .about-grid p, .about-grid li {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .about-grid ul {
+      margin: 0;
+      padding-left: 20px;
     }
 
     .footer {
@@ -219,7 +238,7 @@
     }
 
     @media (max-width: 980px) {
-      .footer-grid { grid-template-columns: 1fr; }
+      .about-grid, .footer-grid { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -246,14 +265,52 @@
   </header>
 
   <main>
-    <section id="contact">
+    <section>
       <div class="container">
         <header class="section-head">
-          <h2>Contact</h2>
-          <p>SkyShield Technology, Agadir, Morocco. Languages: English, French, Arabic.</p>
+          <h1>About SkyShield Technology</h1>
+          <p>SkyShield Technology is a Moroccan deep-tech cybersecurity company built to combine elite offensive and defensive expertise with AI-driven automation and productized security delivery.</p>
         </header>
-        <div class="panel">
-          <p><strong>Email:</strong> <a href="mailto:contact@skyshieldtechnology.com">contact@skyshieldtechnology.com</a></p>
+        <div class="about-grid">
+          <article class="panel">
+            <h2>Company Background</h2>
+            <p>Founded in Agadir by cybersecurity engineer Youssef Aghayou, SkyShield started by solving practical security gaps for startups and growing organizations, then expanded into enterprise-grade assessments, monitoring, incident response, and advisory programs.</p>
+          </article>
+          <article class="panel">
+            <h2>Technology Stack & Architecture</h2>
+            <ul>
+              <li>Security testing workflows for web, API, mobile, cloud, and network environments</li>
+              <li>Automated collection, normalization, and triage pipelines for security signals</li>
+              <li>Layered architecture: assessment, detection, response, governance, and reporting</li>
+              <li>Scalable service modules aligned to ISO 27001 and NIST control families</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h2>AI Automation Approach</h2>
+            <ul>
+              <li>AI-assisted analysis to reduce manual-only bottlenecks in operations</li>
+              <li>Prioritization models for faster remediation and clearer executive reporting</li>
+              <li>Human-in-the-loop validation for accuracy, safety, and business context</li>
+              <li>Continuous tuning based on incident outcomes and evolving threats</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h2>Sponsors & Partners</h2>
+            <p>SkyShield collaborates with incubator programs, cloud ecosystem partners, and cybersecurity communities to accelerate practical deployment, local talent development, and trusted market delivery.</p>
+          </article>
+          <article class="panel">
+            <h2>Vision & Long-Term Roadmap</h2>
+            <ul>
+              <li>Build a leading AI-powered cybersecurity company from Morocco</li>
+              <li>Launch productized autonomous defense modules for SMEs and enterprises</li>
+              <li>Expand regional coverage while exporting trusted services internationally</li>
+              <li>Invest in research, attack simulation labs, and training pipelines</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h2>Leadership</h2>
+            <p>SkyShield is led by founder and cybersecurity engineer Youssef Aghayou, focused on delivery quality, measurable security outcomes, and scalable service architecture for long-term client resilience.</p>
+          </article>
         </div>
       </div>
     </section>
