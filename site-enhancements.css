@@ -101,6 +101,17 @@ body::after {
   background: rgba(24, 35, 54, 0.84);
 }
 
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .scroll-progress {
   position: fixed;
   top: 0;

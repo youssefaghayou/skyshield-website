@@ -10,6 +10,10 @@
 
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement;
+  var ICON_SUN =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12H4m12.95 4.95 1.41 1.41M5.64 5.64 7.05 7.05m9.9 0 1.41-1.41M5.64 18.36l1.41-1.41M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></svg>';
+  var ICON_MOON =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3c-.03.26-.04.53-.04.8A7 7 0 0 0 18.2 10.8c.27 0 .54-.01.8-.04Z"/></svg>';
 
   if (FEATURES.darkMode) {
     var savedTheme = localStorage.getItem('skyshield-theme');
@@ -25,7 +29,6 @@
       themeToggle.className = 'theme-toggle';
       themeToggle.type = 'button';
       themeToggle.setAttribute('aria-label', 'Toggle dark mode');
-      themeToggle.textContent = '?';
       linksNav.appendChild(themeToggle);
     }
 
@@ -34,6 +37,7 @@
         var dark = root.getAttribute('data-theme') === 'dark';
         themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
         themeToggle.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+        themeToggle.innerHTML = dark ? ICON_SUN : ICON_MOON;
       };
       updateToggle();
 
