@@ -189,6 +189,22 @@ tbody tr {
   color: var(--ink);
 }
 
+.cta h2 {
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.cta p {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+[data-theme="dark"] .cta {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
 .panel:hover,
 .card:hover,
 .block:hover,
