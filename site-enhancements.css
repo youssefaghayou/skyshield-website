@@ -232,37 +232,6 @@ body::after {
   color: #ff5c5c;
 }
 
-.copy-email-btn {
-  min-width: 36px;
-  height: 36px;
-  padding: 0 10px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.62);
-  color: var(--ink);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
-}
-
-.copy-email-btn:hover {
-  transform: translateY(-1px);
-  border-color: rgba(14, 143, 114, 0.45);
-}
-
-.copy-email-status {
-  font-size: 12px;
-  color: var(--muted);
-  min-width: 52px;
-}
-
-[data-theme="dark"] .copy-email-btn {
-  background: rgba(25, 36, 56, 0.72);
-  border-color: rgba(104, 121, 147, 0.45);
-  color: #e5e7eb;
-}
-
 .scroll-progress {
   position: fixed;
   top: 0;

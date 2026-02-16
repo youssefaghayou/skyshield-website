@@ -218,49 +218,4 @@
     update();
   }
 
-  var copyButtons = document.querySelectorAll('[data-copy-email]');
-  if (copyButtons.length) {
-    var fallbackCopy = function (text) {
-      var input = document.createElement('input');
-      input.value = text;
-      input.setAttribute('readonly', '');
-      input.style.position = 'absolute';
-      input.style.left = '-9999px';
-      document.body.appendChild(input);
-      input.select();
-      var ok = false;
-      try {
-        ok = document.execCommand('copy');
-      } catch (e) {
-        ok = false;
-      }
-      document.body.removeChild(input);
-      return ok;
-    };
-
-    copyButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var text = btn.getAttribute('data-copy-email') || '';
-        if (!text) return;
-        var status = btn.parentElement ? btn.parentElement.querySelector('.copy-email-status') : null;
-        var setStatus = function (msg) {
-          if (!status) return;
-          status.textContent = msg;
-          window.setTimeout(function () {
-            if (status.textContent === msg) status.textContent = '';
-          }, 1400);
-        };
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function () {
-            setStatus('Copied!');
-          }).catch(function () {
-            setStatus(fallbackCopy(text) ? 'Copied!' : 'Failed');
-          });
-        } else {
-          setStatus(fallbackCopy(text) ? 'Copied!' : 'Failed');
-        }
-      });
-    });
-  }
 })();
