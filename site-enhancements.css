@@ -171,6 +171,98 @@ body::after {
   stroke-linejoin: round;
 }
 
+.back-btn {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  backdrop-filter: blur(6px);
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(14, 143, 114, 0.45);
+}
+
+.back-btn:focus-visible {
+  outline: 2px solid var(--brand, #0e8f72);
+  outline-offset: 2px;
+}
+
+.back-btn svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+[data-theme="dark"] .back-btn {
+  color: #e8edf7;
+  background: rgba(25, 36, 56, 0.68);
+  border-color: rgba(104, 121, 147, 0.45);
+}
+
+.contact-email-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.contact-email-link {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+[data-theme="dark"] .contact-email-link {
+  color: #ff5c5c;
+}
+
+.copy-email-btn {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.copy-email-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(14, 143, 114, 0.45);
+}
+
+.copy-email-status {
+  font-size: 12px;
+  color: var(--muted);
+  min-width: 52px;
+}
+
+[data-theme="dark"] .copy-email-btn {
+  background: rgba(25, 36, 56, 0.72);
+  border-color: rgba(104, 121, 147, 0.45);
+  color: #e5e7eb;
+}
+
 .scroll-progress {
   position: fixed;
   top: 0;
