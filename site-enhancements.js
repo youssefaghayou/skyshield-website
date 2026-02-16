@@ -14,6 +14,17 @@
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12H4m12.95 4.95 1.41 1.41M5.64 5.64 7.05 7.05m9.9 0 1.41-1.41M5.64 18.36l1.41-1.41M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></svg>';
   var ICON_MOON =
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3c-.03.26-.04.53-.04.8A7 7 0 0 0 18.2 10.8c.27 0 .54-.01.8-.04Z"/></svg>';
+  var ICON_MENU =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+  var navRoot = document.querySelector('.nav');
+  var linksNav = document.querySelector('.links');
+  var navControls = document.querySelector('.nav-controls');
+
+  if (navRoot && !navControls) {
+    navControls = document.createElement('div');
+    navControls.className = 'nav-controls';
+    navRoot.appendChild(navControls);
+  }
 
   if (FEATURES.darkMode) {
     var savedTheme = localStorage.getItem('skyshield-theme');
@@ -21,15 +32,16 @@
       root.setAttribute('data-theme', savedTheme);
     }
 
-    var linksNav = document.querySelector('.links');
     var themeToggle = document.getElementById('theme-toggle');
-    if (!themeToggle && linksNav) {
+    if (!themeToggle && navControls) {
       themeToggle = document.createElement('button');
       themeToggle.id = 'theme-toggle';
       themeToggle.className = 'theme-toggle';
       themeToggle.type = 'button';
       themeToggle.setAttribute('aria-label', 'Toggle dark mode');
-      linksNav.appendChild(themeToggle);
+      navControls.appendChild(themeToggle);
+    } else if (themeToggle && navControls && themeToggle.parentElement !== navControls) {
+      navControls.appendChild(themeToggle);
     }
 
     if (themeToggle) {
@@ -48,6 +60,47 @@
         updateToggle();
       });
     }
+  }
+
+  if (navControls && linksNav) {
+    var menuToggle = document.getElementById('mobile-menu-toggle');
+    if (!menuToggle) {
+      menuToggle = document.createElement('button');
+      menuToggle.id = 'mobile-menu-toggle';
+      menuToggle.className = 'menu-toggle';
+      menuToggle.type = 'button';
+      menuToggle.setAttribute('aria-label', 'Open menu');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.innerHTML = ICON_MENU;
+      navControls.appendChild(menuToggle);
+    }
+
+    var closeMenu = function () {
+      linksNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    menuToggle.addEventListener('click', function () {
+      var open = linksNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    linksNav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        if (window.innerWidth <= 768) closeMenu();
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (window.innerWidth > 768) return;
+      if (!linksNav.classList.contains('open')) return;
+      if (linksNav.contains(e.target) || menuToggle.contains(e.target)) return;
+      closeMenu();
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) closeMenu();
+    });
   }
 
   if (FEATURES.scrollProgress && !document.querySelector('.scroll-progress')) {

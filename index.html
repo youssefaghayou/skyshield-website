@@ -182,6 +182,14 @@
       gap: 16px;
       align-items: center;
       flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .nav-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 10px;
     }
 
     .links a {
@@ -667,8 +675,8 @@
     }
 
     .theme-toggle {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 10px;
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.78);
@@ -693,6 +701,40 @@
     .theme-toggle svg {
       width: 18px;
       height: 18px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .menu-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ink);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .menu-toggle:hover {
+      transform: translateY(-1px);
+      border-color: rgba(14, 143, 114, 0.45);
+    }
+
+    [data-theme="dark"] .menu-toggle {
+      background: rgba(24, 35, 54, 0.84);
+    }
+
+    .menu-toggle svg {
+      width: 20px;
+      height: 20px;
       display: block;
       stroke: currentColor;
       fill: none;
@@ -756,6 +798,61 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .nav {
+        flex-wrap: nowrap !important;
+        position: relative;
+      }
+
+      .links {
+        display: none !important;
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        width: min(290px, calc(100vw - 24px));
+        margin-left: 0;
+        padding: 12px;
+        border-radius: 12px;
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+        background: var(--card, var(--surface));
+        border: 1px solid var(--border, var(--line));
+        box-shadow: 0 16px 34px rgba(18, 23, 33, 0.18);
+        z-index: 45;
+      }
+
+      .links.open {
+        display: flex !important;
+      }
+
+      .links a {
+        padding: 10px 12px;
+        border-radius: 10px;
+      }
+
+      .links .btn {
+        text-align: center;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        width: 44px;
+        height: 44px;
+      }
+
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
+      }
+
+      .theme-toggle svg,
+      .menu-toggle svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -781,8 +878,13 @@
         <a href="#booking">Reservation</a>
         <a href="contact.html">Contact</a>
         <a class="btn" href="#booking">Get Protected</a>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
       </nav>
+      <div class="nav-controls">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+        <button id="mobile-menu-toggle" class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -1008,15 +1110,7 @@
       var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var ICON_SUN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2m8-8h2M2 12H4m12.95 4.95 1.41 1.41M5.64 5.64 7.05 7.05m9.9 0 1.41-1.41M5.64 18.36l1.41-1.41M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></svg>';
       var ICON_MOON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3c-.03.26-.04.53-.04.8A7 7 0 0 0 18.2 10.8c.27 0 .54-.01.8-.04Z"/></svg>';
-
-      var menuToggle = document.getElementById('mobile-toggle');
-      var nav = document.getElementById('site-nav');
-      if (menuToggle && nav) {
-        menuToggle.addEventListener('click', function() {
-          var open = nav.classList.toggle('open');
-          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-      }
+      var ICON_MENU = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
 
       if (FEATURES.darkMode) {
         var root = document.documentElement;
@@ -1041,6 +1135,38 @@
             updateToggleLabel();
           });
         }
+      }
+
+      var menuToggle = document.getElementById('mobile-menu-toggle');
+      var linksNav = document.querySelector('.links');
+      if (menuToggle && linksNav) {
+        menuToggle.innerHTML = ICON_MENU;
+        var closeMenu = function() {
+          linksNav.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        };
+
+        menuToggle.addEventListener('click', function() {
+          var open = linksNav.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        linksNav.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            if (window.innerWidth <= 768) closeMenu();
+          });
+        });
+
+        document.addEventListener('click', function(e) {
+          if (window.innerWidth > 768) return;
+          if (!linksNav.classList.contains('open')) return;
+          if (linksNav.contains(e.target) || menuToggle.contains(e.target)) return;
+          closeMenu();
+        });
+
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768) closeMenu();
+        });
       }
 
       if (FEATURES.smoothScroll) {
