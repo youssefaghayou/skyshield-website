@@ -1,0 +1,642 @@
+{
+  "generated": "2026-08-13",
+  "site": "https://skyshieldtechnology.com",
+  "source_branch": "main",
+  "note": "Legacy build inventory. Live site verified byte-identical to main on 2026-08-13.",
+  "pages": [
+    {
+      "slug": "404",
+      "source_file": "404/index.html",
+      "aliases": [
+        "404.html",
+        "_not-found/index.html"
+      ],
+      "sha256": "4c183bd69c3123b7dae928a6077c2fef7bba94cd1476a4244703367fbe5eb855",
+      "bytes": 24573,
+      "urls": [
+        "/404/",
+        "/404.html",
+        "/404",
+        "/_not-found/"
+      ],
+      "in_sitemap": false,
+      "title": "404: This page could not be found.SkyShield Technology | AI-Powered Cybersecurity & Autonomous Defense",
+      "description": "SkyShield Technology is a Moroccan deep-tech startup delivering AI-powered cybersecurity services, penetration testing, SOC operations, incident response, cloud security, and autonomous defense systems. 24/7 AI-driven protection for enterprises, SMEs, and startups.",
+      "word_count": 7,
+      "headings": 2,
+      "images": []
+    },
+    {
+      "slug": "about",
+      "source_file": "about.html",
+      "aliases": [],
+      "sha256": "c79583efcce5f40f8b9e175bdd6692640d605f86a3e9b5f260eb86a77a9c9a21",
+      "bytes": 13826,
+      "urls": [
+        "/about.html",
+        "/about"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | About",
+      "description": "Learn about SkyShield Technology's background, architecture, AI automation model, sponsors, roadmap, and leadership.",
+      "word_count": 307,
+      "headings": 10,
+      "images": []
+    },
+    {
+      "slug": "ai-automation",
+      "source_file": "ai-automation.html",
+      "aliases": [],
+      "sha256": "9991e8d7d5aa6514249766fef6444d026e45153c2ea0892e75736fce2d8605b4",
+      "bytes": 3025,
+      "urls": [
+        "/ai-automation.html",
+        "/ai-automation"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | AI Automation and AI Systems Engineering",
+      "description": "SkyShield AI automation and AI systems engineering services.",
+      "word_count": 56,
+      "headings": 1,
+      "images": []
+    },
+    {
+      "slug": "blockchain",
+      "source_file": "blockchain.html",
+      "aliases": [],
+      "sha256": "69bb5039cc1c74548aaa43794decdf45e40257f4918001670890dea5ca467e73",
+      "bytes": 3016,
+      "urls": [
+        "/blockchain.html",
+        "/blockchain"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | Blockchain and Digital Asset Security",
+      "description": "SkyShield AI automation and AI systems engineering services.",
+      "word_count": 55,
+      "headings": 1,
+      "images": []
+    },
+    {
+      "slug": "cloud",
+      "source_file": "cloud.html",
+      "aliases": [],
+      "sha256": "15d0bdc99a6429ab5c3cff80073c3003dae70cdfd23256b026ae5b4fa5f2897a",
+      "bytes": 3017,
+      "urls": [
+        "/cloud.html",
+        "/cloud"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | Cloud Architecture and Cloud Engineering",
+      "description": "SkyShield AI automation and AI systems engineering services.",
+      "word_count": 55,
+      "headings": 1,
+      "images": []
+    },
+    {
+      "slug": "contact",
+      "source_file": "contact.html",
+      "aliases": [],
+      "sha256": "a2b9b628612a61a38ff2a1435ed2a48df8a7ae430ec4ced80b6c7d0731154a65",
+      "bytes": 10978,
+      "urls": [
+        "/contact.html",
+        "/contact"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | Contact",
+      "description": "Contact SkyShield Technology in Agadir, Morocco. Email us for cybersecurity services and consultation.",
+      "word_count": 85,
+      "headings": 4,
+      "images": []
+    },
+    {
+      "slug": "cybersecurity-cloud",
+      "source_file": "cybersecurity-cloud.html",
+      "aliases": [],
+      "sha256": "ae73bd8c6dad1554638d62095fc42cf368c69f8d58d851f8f7bab99e1a665401",
+      "bytes": 5288,
+      "urls": [
+        "/cybersecurity-cloud.html",
+        "/cybersecurity-cloud"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield | Cloud & Application Security Services",
+      "description": "Cloud and application security services at SkyShield: CSPM, IAM, DevSecOps, GRC, privacy advisory, and third-party risk.",
+      "word_count": 159,
+      "headings": 10,
+      "images": []
+    },
+    {
+      "slug": "cybersecurity-defensive",
+      "source_file": "cybersecurity-defensive.html",
+      "aliases": [],
+      "sha256": "6d185c40d28aefc24e241589c6cdfbcb2ec2c9b96629384ba0649f1547ecd751",
+      "bytes": 5679,
+      "urls": [
+        "/cybersecurity-defensive.html",
+        "/cybersecurity-defensive"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield | Defensive Operations Services",
+      "description": "Defensive cybersecurity services at SkyShield: SOC, MDR, TI, threat hunting, phishing defense, PAM audits, and monitoring services.",
+      "word_count": 178,
+      "headings": 13,
+      "images": []
+    },
+    {
+      "slug": "cybersecurity-incident-forensics",
+      "source_file": "cybersecurity-incident-forensics.html",
+      "aliases": [],
+      "sha256": "506311682d0a56c91e4aff2be8af7f4c75c9d8b404ee9e5d175a6c5717243808",
+      "bytes": 4993,
+      "urls": [
+        "/cybersecurity-incident-forensics.html",
+        "/cybersecurity-incident-forensics"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield | Incident Response & Forensics Services",
+      "description": "Incident response and forensic services at SkyShield: IR, DFIR, remote triage, malware analysis, and recovery planning.",
+      "word_count": 128,
+      "headings": 8,
+      "images": []
+    },
+    {
+      "slug": "cybersecurity-offensive",
+      "source_file": "cybersecurity-offensive.html",
+      "aliases": [],
+      "sha256": "38d32c83e0c9177c62ec81147a8b485e63bc030cb36d9b1a841701bb951b0b24",
+      "bytes": 5711,
+      "urls": [
+        "/cybersecurity-offensive.html",
+        "/cybersecurity-offensive"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield | Offensive Security Services",
+      "description": "Offensive security services at SkyShield: VA, pentesting, red teaming, secure code review, and specialized offensive assessments.",
+      "word_count": 188,
+      "headings": 13,
+      "images": []
+    },
+    {
+      "slug": "cybersecurity",
+      "source_file": "cybersecurity.html",
+      "aliases": [],
+      "sha256": "4a7c68c7b790ee52b3ac34bb4786114b5c586bf06ec294c5c49b8322a503a615",
+      "bytes": 5881,
+      "urls": [
+        "/cybersecurity.html",
+        "/cybersecurity"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | Cybersecurity",
+      "description": "Cybersecurity domains at SkyShield: offensive security, defensive operations, cloud & application security, and incident response & forensics.",
+      "word_count": 179,
+      "headings": 2,
+      "images": []
+    },
+    {
+      "slug": "development",
+      "source_file": "development.html",
+      "aliases": [],
+      "sha256": "3246c344efed469781a62b3056476258759de05b19ae543abdd97e21694ccb0e",
+      "bytes": 3019,
+      "urls": [
+        "/development.html",
+        "/development"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | Web and Mobile Application Development",
+      "description": "SkyShield AI automation and AI systems engineering services.",
+      "word_count": 55,
+      "headings": 1,
+      "images": []
+    },
+    {
+      "slug": "index",
+      "source_file": "index.html",
+      "aliases": [],
+      "sha256": "a78662d7535b3039359d0627f545d302b1fcf73487181fbe9866cdd637031dc3",
+      "bytes": 44026,
+      "urls": [
+        "/",
+        "/index.html"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | AI-Powered Cybersecurity & Autonomous Defense",
+      "description": "SkyShield Technology is a Moroccan deep-tech startup delivering AI-powered cybersecurity services, penetration testing, SOC operations, incident response, cloud security, and autonomous defense systems.",
+      "word_count": 602,
+      "headings": 12,
+      "images": []
+    },
+    {
+      "slug": "robotics",
+      "source_file": "robotics.html",
+      "aliases": [],
+      "sha256": "dad34309f15f24075efe66e3be5bce5931669c45b4f78e247bf26ffd7c47ac37",
+      "bytes": 3020,
+      "urls": [
+        "/robotics.html",
+        "/robotics"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | Robotics and Autonomous Systems Security",
+      "description": "SkyShield AI automation and AI systems engineering services.",
+      "word_count": 55,
+      "headings": 1,
+      "images": []
+    },
+    {
+      "slug": "services",
+      "source_file": "services.html",
+      "aliases": [],
+      "sha256": "721e6fdb5061b347334f0b9f20d2e7aab7684a2c4c48a0a00e0bcf82e2f06d9b",
+      "bytes": 5805,
+      "urls": [
+        "/services.html",
+        "/services"
+      ],
+      "in_sitemap": true,
+      "title": "SkyShield Technology | Services",
+      "description": "SkyShield Technology cybersecurity services: penetration testing, vulnerability assessment, SOC/MDR, incident response, cloud security, and GRC compliance.",
+      "word_count": 211,
+      "headings": 2,
+      "images": []
+    }
+  ],
+  "files": [
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "hosting-infra"
+    },
+    {
+      "path": "404/index.html",
+      "bytes": 24573,
+      "sha256": "4c183bd69c3123b7dae928a6077c2fef7bba94cd1476a4244703367fbe5eb855",
+      "category": "system-page"
+    },
+    {
+      "path": "404.html",
+      "bytes": 24573,
+      "sha256": "4c183bd69c3123b7dae928a6077c2fef7bba94cd1476a4244703367fbe5eb855",
+      "category": "system-page"
+    },
+    {
+      "path": "ACCESS-CHECK.md",
+      "bytes": 196,
+      "sha256": "8f62d2609a039640f56ede6de63048d70b4d20782889f077572a2551a69e8485",
+      "category": "meta"
+    },
+    {
+      "path": "CNAME",
+      "bytes": 23,
+      "sha256": "068e57d81888edf88dd1fff3585b5a388637cfc8af0d158c489959ce69447304",
+      "category": "hosting-infra"
+    },
+    {
+      "path": "_next/static/chunks/102b383bc5ec83d4.css",
+      "bytes": 35912,
+      "sha256": "7cd1a377372cc3a151ec5aee0ad373f44f2160f6ef1abd005e4636995fc82edf",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/2ce72b8c3205a669.js",
+      "bytes": 156358,
+      "sha256": "bacc920971a57374bde52f4f1887656eb421644e2b8832c491cd4bda3111332d",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/2f236954d6a65e12.js",
+      "bytes": 30849,
+      "sha256": "de98aefbea0cffbf2c3d5d266dfeabef219e5d805208e63bccf1fb65a875b012",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/383196d18507b17c.js",
+      "bytes": 877771,
+      "sha256": "303711ab6aae98f73ba10be2ede142851c4af2e9b0532861492234556216c134",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/607c157748bdb4f5.js",
+      "bytes": 170185,
+      "sha256": "657e075dc3031a0bd23e6549ddba49c9487d7a333c8edbf854e33866670d9c7e",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/6bd3cb3b56d06ca6.js",
+      "bytes": 17712,
+      "sha256": "60d237fd5ac32bb9af07123d58739127bd410f8cf549c655af68d04e71fd8e45",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/9513a138d7ae5acb.js",
+      "bytes": 218,
+      "sha256": "2d48e609567634749500b3d68a4615094f1407d016ddd8cc1b65159232701f98",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/a6dad97d9634a72d.js",
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/a6dad97d9634a72d.js.map",
+      "bytes": 115717,
+      "sha256": "b26c4f42daadc4b7985198660eb4eaf2f4aedb8d5f46e8111c0128cbc11298fc",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/f2f58a7e93290fbb.js",
+      "bytes": 224636,
+      "sha256": "3ac39d9680be8f072f8dc0e5e316d4e1c455efe5cdd7e9215b74c570915a7b62",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/chunks/turbopack-060963d2e523ceef.js",
+      "bytes": 10196,
+      "sha256": "87f0d75e61c0b7afae838e4340b16ef9e5efe3fa9d22d79f2a17fc3bd42562b0",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/jKEnZ9V3IBsH8iqz3100x/_buildManifest.js",
+      "bytes": 219,
+      "sha256": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/jKEnZ9V3IBsH8iqz3100x/_clientMiddlewareManifest.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/jKEnZ9V3IBsH8iqz3100x/_ssgManifest.js",
+      "bytes": 80,
+      "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/13bf9871fe164e7f-s.f2220059.woff2",
+      "bytes": 2020,
+      "sha256": "992eea2f70210457ddd1196de4df3240919ffe068ad188c79d985fba4565d3bf",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/1bffadaabf893a1e-s.7cd81963.woff2",
+      "bytes": 85272,
+      "sha256": "a28eb6d3ccb534ae0c94ca999371df024aab60b08c3c8a5720ee9e32fa0faaa2",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/2bbe8d2671613f1f-s.76dcb0b2.woff2",
+      "bytes": 10280,
+      "sha256": "8db00ff46c67b22cda8bed865acf7077651cac8d2841d5b40980556b48961931",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/2c55a0e60120577a-s.2a48534a.woff2",
+      "bytes": 25844,
+      "sha256": "fccca918fea40089dacadc7045861314d1a6bc91f1f323cc1eeb22ebcdb321b5",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/3fe682a82f50d426-s.23358719.woff2",
+      "bytes": 15204,
+      "sha256": "7db7affbce1fdee69c1ffc2641bbca289b049867f524c9d861fe35ab6670bf29",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/5476f68d60460930-s.c995e352.woff2",
+      "bytes": 19044,
+      "sha256": "46dd4cdca58c26ae87cc6927657bf83b2e8abfc39ffd0ab176e301a8d28d22bf",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/70bc3e132a0a741e-s.p.15008bfb.woff2",
+      "bytes": 40480,
+      "sha256": "1e06740a02a443fb7f3eeda8fcaa685a0f6c620e3f01e6666e847295469ce3ad",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/71b036adf157cdcf-s.bd5f4d11.woff2",
+      "bytes": 9084,
+      "sha256": "3edf363dbf9d5fa0cdc784ae2b431a8a4152f4055a8a8858028c0bd668808273",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2",
+      "bytes": 48432,
+      "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/89b21bb081cb7469-s.51c18f09.woff2",
+      "bytes": 7468,
+      "sha256": "1390e86cc2823e759358918c01c4fcc1b6e4f01bca915bdbeb6d68eb5c244405",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/9c72aa0f40e4eef8-s.18a48cbc.woff2",
+      "bytes": 18744,
+      "sha256": "aebf2ab4a4ce6810d73c1ac7be7cafb4e5ec4cee2d6db5fb3e09691747ec4bd6",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/ad66f9afd8947f86-s.7a40eb73.woff2",
+      "bytes": 11272,
+      "sha256": "a2e2c783ca6f9c20486e81e72a279203e86730bbf8f01ff6a5ee9dbd09e1c271",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/cc545e633e20c56d-s.f6f1950f.woff2",
+      "bytes": 12064,
+      "sha256": "af7486955880be1c2b972e9c766acffb776768d669b6576ed9a0919ce72e7ca6",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_next/static/media/favicon.0b3bf435.ico",
+      "bytes": 25931,
+      "sha256": "2b8ad2d33455a8f736fc3a8ebf8f0bdea8848ad4c0db48a2833bd0f9cd775932",
+      "category": "build-artifact"
+    },
+    {
+      "path": "_not-found/__next._full.txt",
+      "bytes": 12950,
+      "sha256": "a0a91f16d3a6872a4289e02243bbbc86652704b9d57c7926586d44285251236b",
+      "category": "system-page"
+    },
+    {
+      "path": "_not-found/__next._head.txt",
+      "bytes": 4121,
+      "sha256": "006006530a0979ff7b77ffd53ce6a4f5a7c20f5be20659d664a6490ae7832bbe",
+      "category": "system-page"
+    },
+    {
+      "path": "_not-found/__next._index.txt",
+      "bytes": 6868,
+      "sha256": "4aa82ea6bd057efeceea29474ae714a49cc01715d7adf26679a38838998e9034",
+      "category": "system-page"
+    },
+    {
+      "path": "_not-found/__next._not-found.__PAGE__.txt",
+      "bytes": 1406,
+      "sha256": "c332d4cfcbc518a62bc44b0ea4320b04ce2b31a316c773126c1eac6c90c1e2fb",
+      "category": "system-page"
+    },
+    {
+      "path": "_not-found/__next._not-found.txt",
+      "bytes": 346,
+      "sha256": "49cb4094922e21eaa1ba01bf9834ad227f695b148a90210f1e2b8306a96cd9a1",
+      "category": "system-page"
+    },
+    {
+      "path": "_not-found/__next._tree.txt",
+      "bytes": 483,
+      "sha256": "3935efdbffb368fbf73a8d55bf0c0e6fd20943042e1bae3706f909d90fbfcf42",
+      "category": "system-page"
+    },
+    {
+      "path": "_not-found/index.html",
+      "bytes": 24573,
+      "sha256": "4c183bd69c3123b7dae928a6077c2fef7bba94cd1476a4244703367fbe5eb855",
+      "category": "system-page"
+    },
+    {
+      "path": "_not-found/index.txt",
+      "bytes": 12950,
+      "sha256": "a0a91f16d3a6872a4289e02243bbbc86652704b9d57c7926586d44285251236b",
+      "category": "system-page"
+    },
+    {
+      "path": "about.html",
+      "bytes": 13826,
+      "sha256": "c79583efcce5f40f8b9e175bdd6692640d605f86a3e9b5f260eb86a77a9c9a21",
+      "category": "content-page"
+    },
+    {
+      "path": "ai-automation.html",
+      "bytes": 3025,
+      "sha256": "9991e8d7d5aa6514249766fef6444d026e45153c2ea0892e75736fce2d8605b4",
+      "category": "content-page"
+    },
+    {
+      "path": "blockchain.html",
+      "bytes": 3016,
+      "sha256": "69bb5039cc1c74548aaa43794decdf45e40257f4918001670890dea5ca467e73",
+      "category": "content-page"
+    },
+    {
+      "path": "cloud.html",
+      "bytes": 3017,
+      "sha256": "15d0bdc99a6429ab5c3cff80073c3003dae70cdfd23256b026ae5b4fa5f2897a",
+      "category": "content-page"
+    },
+    {
+      "path": "contact.html",
+      "bytes": 10978,
+      "sha256": "a2b9b628612a61a38ff2a1435ed2a48df8a7ae430ec4ced80b6c7d0731154a65",
+      "category": "content-page"
+    },
+    {
+      "path": "cybersecurity-cloud.html",
+      "bytes": 5288,
+      "sha256": "ae73bd8c6dad1554638d62095fc42cf368c69f8d58d851f8f7bab99e1a665401",
+      "category": "content-page"
+    },
+    {
+      "path": "cybersecurity-defensive.html",
+      "bytes": 5679,
+      "sha256": "6d185c40d28aefc24e241589c6cdfbcb2ec2c9b96629384ba0649f1547ecd751",
+      "category": "content-page"
+    },
+    {
+      "path": "cybersecurity-incident-forensics.html",
+      "bytes": 4993,
+      "sha256": "506311682d0a56c91e4aff2be8af7f4c75c9d8b404ee9e5d175a6c5717243808",
+      "category": "content-page"
+    },
+    {
+      "path": "cybersecurity-offensive.html",
+      "bytes": 5711,
+      "sha256": "38d32c83e0c9177c62ec81147a8b485e63bc030cb36d9b1a841701bb951b0b24",
+      "category": "content-page"
+    },
+    {
+      "path": "cybersecurity.html",
+      "bytes": 5881,
+      "sha256": "4a7c68c7b790ee52b3ac34bb4786114b5c586bf06ec294c5c49b8322a503a615",
+      "category": "content-page"
+    },
+    {
+      "path": "development.html",
+      "bytes": 3019,
+      "sha256": "3246c344efed469781a62b3056476258759de05b19ae543abdd97e21694ccb0e",
+      "category": "content-page"
+    },
+    {
+      "path": "favicon.ico",
+      "bytes": 25931,
+      "sha256": "2b8ad2d33455a8f736fc3a8ebf8f0bdea8848ad4c0db48a2833bd0f9cd775932",
+      "category": "brand-asset"
+    },
+    {
+      "path": "favicon.png",
+      "bytes": 316510,
+      "sha256": "1300d4c42f42e624d7dff870fdc57f3203bb596430d584a3dcb1325b00776a8f",
+      "category": "brand-asset"
+    },
+    {
+      "path": "index.html",
+      "bytes": 44026,
+      "sha256": "a78662d7535b3039359d0627f545d302b1fcf73487181fbe9866cdd637031dc3",
+      "category": "content-page"
+    },
+    {
+      "path": "logo.png",
+      "bytes": 1998239,
+      "sha256": "533297f4562ea7cd1c6bc9a701e1f861d33b58d6848ab6f923600a4e4b2ad866",
+      "category": "brand-asset"
+    },
+    {
+      "path": "robotics.html",
+      "bytes": 3020,
+      "sha256": "dad34309f15f24075efe66e3be5bce5931669c45b4f78e247bf26ffd7c47ac37",
+      "category": "content-page"
+    },
+    {
+      "path": "robots.txt",
+      "bytes": 415,
+      "sha256": "98f0796df2ccd24f8b8607a1109a522509409eed8084484a2433edab04388351",
+      "category": "seo"
+    },
+    {
+      "path": "services.html",
+      "bytes": 5805,
+      "sha256": "721e6fdb5061b347334f0b9f20d2e7aab7684a2c4c48a0a00e0bcf82e2f06d9b",
+      "category": "content-page"
+    },
+    {
+      "path": "site-enhancements.css",
+      "bytes": 8314,
+      "sha256": "25f5a3f966ce0b022a90fa9c3af4f1c02ef1ae005c1fc53e41011fdc917aad74",
+      "category": "enhancement-layer"
+    },
+    {
+      "path": "site-enhancements.js",
+      "bytes": 8404,
+      "sha256": "708d9d0758ba392db920870b557595168ff0d479c0e88f7b84d91ffe1fad876e",
+      "category": "enhancement-layer"
+    },
+    {
+      "path": "sitemap.xml",
+      "bytes": 2648,
+      "sha256": "6bc6c25d15c59987f26ec929c3208abd75bc479ad29648edd930dcff5d29af50",
+      "category": "seo"
+    }
+  ]
+}
