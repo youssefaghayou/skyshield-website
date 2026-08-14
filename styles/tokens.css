@@ -1,0 +1,112 @@
+/* ============================================================================
+   SKYSHIELD DESIGN TOKENS — the only place a raw value may live.
+   Nothing anywhere else in the codebase uses a raw hex, duration, or easing.
+   ============================================================================ */
+
+:root {
+  /* FOUNDATION ------------------------------------------------------------ */
+  --void: #000000; /* true black, page background */
+  --surface-1: #08090c;
+  --surface-2: #101318;
+  --surface-3: #191d24;
+  --hairline: #2a2f38;
+  --text-primary: #f2f5f7;
+  --text-secondary: #9ba6b2;
+  --text-tertiary: #5c6773;
+
+  /* SPINE — the architecture, present on every page ------------------------ */
+  --atlas-gold: #ffd24a; /* command threads. The only warm colour in the system. */
+  --atlas-white: #ffffff; /* the apex node */
+
+  /* DOMAIN — AIR ----------------------------------------------------------- */
+  --air-deep: #141c2e;
+  --air-primary: #3fe0ff;
+  --air-accent: #eae4ff; /* lightning */
+
+  /* DOMAIN — SEA ----------------------------------------------------------- */
+  --sea-deep: #02040a;
+  --sea-primary: #1fc9b4;
+  --sea-accent: #22f0e0;
+
+  /* DOMAIN — LAND ---------------------------------------------------------- */
+  --land-deep: #1b2547;
+  --land-primary: #8c4a2f; /* ochre */
+  --land-accent: #ffb13d; /* the lion's eyes */
+
+  /* DOMAIN — CYBER --------------------------------------------------------- */
+  --cyber-deep: #000000;
+  --cyber-primary: #00d8f0;
+  --cyber-accent: #00ffd8;
+  --threat: #dc0f2e; /* ONLY for genuine adversary/failure representation */
+
+  /* SEMANTIC --------------------------------------------------------------- */
+  --ok: #2fd48a;
+  --warn: #ffa820;
+  --critical: #dc0f2e;
+
+  /* TYPE SCALE — fluid, exactly eight sizes. Do not add sizes. ------------- */
+  --text-96: clamp(2.75rem, 1.4rem + 6.75vw, 6rem);
+  --text-64: clamp(2.25rem, 1.35rem + 4.5vw, 4rem);
+  --text-40: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);
+  --text-28: clamp(1.375rem, 1.15rem + 1.1vw, 1.75rem);
+  --text-20: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --text-16: 1rem;
+  --text-14: 0.875rem;
+  --text-12: 0.75rem;
+
+  /* MOTION ----------------------------------------------------------------- */
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --dur-micro: 200ms;
+  --dur-component: 400ms;
+  --dur-section: 800ms;
+  --dur-scene: 1200ms;
+
+  /* MEASURE ---------------------------------------------------------------- */
+  --measure: 68ch;
+
+  /* DOMAIN RESOLUTION — defaults to the ATLAS spine ------------------------ */
+  --domain-primary: var(--atlas-gold);
+  --domain-deep: var(--surface-1);
+  --domain-accent: var(--atlas-white);
+}
+
+/* Registered so the 400ms domain crossfade can interpolate them.
+   Browsers without @property snap instead of fading — acceptable. */
+@property --domain-primary {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffd24a;
+}
+@property --domain-deep {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #08090c;
+}
+@property --domain-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffffff;
+}
+
+/* One component library, four skins. ------------------------------------- */
+[data-domain="air"] {
+  --domain-primary: var(--air-primary);
+  --domain-deep: var(--air-deep);
+  --domain-accent: var(--air-accent);
+}
+[data-domain="sea"] {
+  --domain-primary: var(--sea-primary);
+  --domain-deep: var(--sea-deep);
+  --domain-accent: var(--sea-accent);
+}
+[data-domain="land"] {
+  --domain-primary: var(--land-primary);
+  --domain-deep: var(--land-deep);
+  --domain-accent: var(--land-accent);
+}
+[data-domain="cyber"] {
+  --domain-primary: var(--cyber-primary);
+  --domain-deep: var(--cyber-deep);
+  --domain-accent: var(--cyber-accent);
+}

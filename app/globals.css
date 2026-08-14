@@ -1,0 +1,115 @@
+@import "../styles/tokens.css";
+@import "tailwindcss";
+
+/* Map tokens into Tailwind's theme so utilities stay token-driven. */
+@theme inline {
+  --color-void: var(--void);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-hairline: var(--hairline);
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-tertiary: var(--text-tertiary);
+  --color-gold: var(--atlas-gold);
+  --color-apex: var(--atlas-white);
+  --color-domain: var(--domain-primary);
+  --color-domain-deep: var(--domain-deep);
+  --color-domain-accent: var(--domain-accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-critical: var(--critical);
+  --color-threat: var(--threat);
+
+  --font-display: var(--font-archivo), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --text-step-5: var(--text-96);
+  --text-step-4: var(--text-64);
+  --text-step-3: var(--text-40);
+  --text-step-2: var(--text-28);
+  --text-step-1: var(--text-20);
+  --text-step-0: var(--text-16);
+  --text-step--1: var(--text-14);
+  --text-step--2: var(--text-12);
+}
+
+html {
+  color-scheme: dark;
+  background: var(--void);
+}
+
+body {
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Domain temperature crossfade — the site changes colour as you move through it. */
+[data-domain],
+:root {
+  transition:
+    --domain-primary var(--dur-component) var(--ease-enter),
+    --domain-deep var(--dur-component) var(--ease-enter),
+    --domain-accent var(--dur-component) var(--ease-enter);
+}
+
+/* GRAIN — fixed film-grain overlay across the whole page. ------------------ */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+/* Selection + focus — visible, on-system, never the browser default. ------- */
+::selection {
+  background: var(--atlas-gold);
+  color: var(--void);
+}
+
+:focus-visible {
+  outline: 2px solid var(--atlas-gold);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Display type discipline ------------------------------------------------- */
+.type-display {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  letter-spacing: 0.01em;
+  line-height: 1.02;
+  font-weight: 700;
+}
+
+.type-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-12);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.measure {
+  max-width: var(--measure);
+}
+
+/* Reduced motion is a first-class variant, not an afterthought.
+   Scroll-driven scenes ship deliberate static end-states on top of this. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
