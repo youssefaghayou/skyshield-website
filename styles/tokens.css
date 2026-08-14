@@ -45,8 +45,12 @@
   --critical: #dc0f2e;
 
   /* TYPE SCALE — fluid, exactly eight sizes. Do not add sizes. ------------- */
-  --text-96: clamp(2.75rem, 1.4rem + 6.75vw, 6rem);
-  --text-64: clamp(2.25rem, 1.35rem + 4.5vw, 4rem);
+  --text-96: clamp(
+    2.125rem,
+    0.25rem + 6.5vw,
+    6rem
+  ); /* min lowered: 'ARCHITECTURE.' must fit 390px */
+  --text-64: clamp(1.875rem, 0.25rem + 4.6vw, 4rem);
   --text-40: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);
   --text-28: clamp(1.375rem, 1.15rem + 1.1vw, 1.75rem);
   --text-20: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);

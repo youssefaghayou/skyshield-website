@@ -101,6 +101,23 @@ body::after {
   max-width: var(--measure);
 }
 
+/* OUROBOROS — slow self-repair under siege (S6). Clamped to static by the
+   reduced-motion block below; composition stays legible without motion. */
+.ring-spin {
+  animation: ring-rotate 90s linear infinite;
+}
+.ring-siege {
+  animation: ring-rotate 70s linear infinite reverse;
+}
+.ring-breach {
+  animation: ring-rotate 14s linear infinite;
+}
+@keyframes ring-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Reduced motion is a first-class variant, not an afterthought.
    Scroll-driven scenes ship deliberate static end-states on top of this. */
 @media (prefers-reduced-motion: reduce) {
