@@ -5,7 +5,8 @@ GitHub Pages serves each `page.html` at **both** `/page.html` and `/page` (verif
 so every retirement must redirect both forms. `redirects.json` (Phase 4) is generated
 from this table once dispositions are approved.
 
-**Status: PROPOSED — no disposition is final until approved by the owner.**
+**Status: dispositions below marked (approved) were decided by the owner on 2026-08-14
+(D-007…D-011); the rest remain PROPOSED until Phase 4 sign-off.**
 
 ## Content pages (14 URLs in sitemap.xml)
 
@@ -18,13 +19,13 @@ from this table once dispositions are approved.
 | `/cybersecurity-offensive.html` | Offensive Security Services | 188 words | Redirect → `/cyber/offensive` (content migrates) |
 | `/cybersecurity-defensive.html` | Defensive Operations Services | 178 words | Redirect → `/cyber/defensive` (content migrates) |
 | `/cybersecurity-cloud.html` | Cloud & Application Security | 159 words | Redirect → `/cyber/cloud` (content migrates) |
-| `/cybersecurity-incident-forensics.html` | Incident Response & Forensics | 128 words | Redirect → `/cyber/incident-forensics` (see note 2) |
+| `/cybersecurity-incident-forensics.html` | Incident Response & Forensics | 128 words | Redirect → `/cyber/incident-forensics` (approved, D-011) |
 | `/contact.html` | Contact | 85 words | Redirect → `/contact` |
-| `/ai-automation.html` | AI Automation | thin ("coming soon") | Redirect → target TBD (see note 3) |
+| `/ai-automation.html` | AI Automation | thin ("coming soon") | Redirect → `/atlas` (proposed) |
 | `/cloud.html` | Cloud Architecture | thin ("coming soon") | Redirect → `/cyber/cloud` (see note 3) |
-| `/development.html` | Web & Mobile Development | thin ("coming soon") | **Owner decision** (see note 4) |
+| `/development.html` | Web & Mobile Development | thin ("coming soon") | Redirect → `/` — offering retired (approved, D-010) |
 | `/blockchain.html` | Blockchain & Digital Asset Security | thin ("coming soon") | Redirect → `/cyber/offensive` (see note 3) |
-| `/robotics.html` | Robotics & Autonomous Systems Security | thin ("coming soon") | Redirect → target TBD (see note 3) |
+| `/robotics.html` | Robotics & Autonomous Systems Security | thin ("coming soon") | Redirect → `/cyber` (proposed) |
 
 Each row implies its extensionless twin (`/about.html` **and** `/about`), plus `/index.html` → `/`.
 
@@ -37,7 +38,7 @@ Each row implies its extensionless twin (`/about.html` **and** `/about`), plus `
 | `CNAME` (`skyshieldtechnology.com`), `.nojekyll` | Carry into published branch untouched |
 | `/site-enhancements.css`, `/site-enhancements.js` | Retired with the legacy build (see ENHANCEMENTS-ANALYSIS.md) |
 | `/_next/*` | Legacy build artifacts, retired |
-| `/ACCESS-CHECK.md` | Temporary write-access check, to be removed (owner approved removal pending) |
+| `/ACCESS-CHECK.md` | Removed from main with owner approval, 2026-08-14 |
 
 ## Assets
 
@@ -58,8 +59,8 @@ Each row implies its extensionless twin (`/about.html` **and** `/about`), plus `
    and GRC/compliance inside cloud until there is enough content to split them out.
 3. The five thin "coming soon" pages have no content to migrate; only their URLs matter.
    Targets marked TBD depend on decisions about the new IA.
-4. **`/development`** (web & mobile app development) has no home in the new IA. Whether the
-   company still offers it is a business decision, not an engineering one.
+4. **Decided 2026-08-14:** web & mobile app development is no longer offered (D-010);
+   `/development` redirects to `/` with no successor page.
 
 ## Search-console / verification
 
