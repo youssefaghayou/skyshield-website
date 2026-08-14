@@ -15,3 +15,18 @@ One line per non-obvious choice, newest last. The reason is the point — record
   pipeline switches to a build branch in Phase 1.
 - **D-006** (2026-08-13) GitHub Pages serves every `page.html` at `/page` too (verified in
   production), so the redirect plan must cover both URL forms for every retired page.
+- **D-007** (2026-08-14) Hosting: Cloudflare Pages (owner decision). Free tier permits
+  commercial use, gives true 301s via `_redirects`, custom headers, and per-branch preview
+  deploys. GitHub Pages stays only as the legacy host until DNS cutover.
+- **D-008** (2026-08-14) Branch strategy during transition: `main` is frozen as the live
+  GitHub Pages site; all rebuild work happens on the `rebuild` branch, deployed by
+  Cloudflare Pages to a *.pages.dev preview. At cutover: merge `rebuild` → `main`, point
+  Cloudflare production at `main`, move DNS, retire GitHub Pages. Reason: pushing source to
+  `main` before cutover would 404 the live site.
+- **D-009** (2026-08-14) Single dark theme (owner decision). The legacy light/dark toggle is
+  retired; there is no second theme to maintain.
+- **D-010** (2026-08-14) Web & mobile app development is no longer offered (owner decision).
+  `/development.html` gets a redirect, no successor page.
+- **D-011** (2026-08-14) Cyber IA derives from salvage (owner decision): offensive /
+  defensive / cloud / incident-forensics under `/cyber/*`. SOC folds into defensive,
+  GRC/compliance into cloud, until content justifies a split.
