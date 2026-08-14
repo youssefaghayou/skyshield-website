@@ -12,7 +12,7 @@
   --hairline: #2a2f38;
   --text-primary: #f2f5f7;
   --text-secondary: #9ba6b2;
-  --text-tertiary: #5c6773;
+  --text-tertiary: #7a8693; /* lightened from spec #5C6773 — AA 4.5:1 on every surface (D-012) */
 
   /* SPINE — the architecture, present on every page ------------------------ */
   --atlas-gold: #ffd24a; /* command threads. The only warm colour in the system. */

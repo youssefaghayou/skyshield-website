@@ -30,3 +30,9 @@ One line per non-obvious choice, newest last. The reason is the point — record
 - **D-011** (2026-08-14) Cyber IA derives from salvage (owner decision): offensive /
   defensive / cloud / incident-forensics under `/cyber/*`. SOC folds into defensive,
   GRC/compliance into cloud, until content justifies a split.
+- **D-012** (2026-08-14) `--text-tertiary` lightened #5C6773 → #7A8693: the spec value
+  measures 3.64:1 on the void (Lighthouse-confirmed), below WCAG AA 4.5:1 for the small mono
+  labels it styles. #7A8693 is the darkest same-hue value passing 4.5:1 on void, surface-2
+  and surface-3. AA is a hard budget; the palette bends to it.
+- **D-013** (2026-08-14) Preview deploys are `noindex` via an `INDEXABLE` env gate; flipped
+  only in the production environment at DNS cutover so *.pages.dev never competes in search.
