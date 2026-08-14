@@ -14,7 +14,10 @@ export function LenisProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // No smoothing for reduced-motion users, and none for automation
+    // (crawlers, Lighthouse, QA harnesses) — native scroll behaves better there.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || navigator.webdriver)
+      return;
 
     const lenis = new Lenis();
     lenis.on("scroll", ScrollTrigger.update);
