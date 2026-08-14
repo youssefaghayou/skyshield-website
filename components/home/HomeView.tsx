@@ -12,7 +12,8 @@ import { TelemetryStrip } from "@/components/primitives/TelemetryStrip";
 import { Scanlines } from "@/components/primitives/Scanlines";
 import { TimestampUTC } from "@/components/site/TimestampUTC";
 import { OuroborosRing } from "./OuroborosRing";
-import { ApexThreads, ContinuingThreads } from "./ThreadsSVG";
+import { ApexHero } from "./ApexHero";
+import { ContinuingThreads } from "./ThreadsSVG";
 
 /**
  * The homepage: a vertical descent through the stack. Base markup renders the
@@ -196,16 +197,11 @@ export function HomeView() {
           {hero.station}
         </p>
 
-        {/* the apex node — threads descend from it, behind the headline */}
+        {/* the apex node — threads descend from it, behind the headline.
+            ApexHero upgrades to the Tier-1 real-time version on capable
+            desktops (D-014); this markup is the universal fallback. */}
         <div className="isolate relative z-10 flex flex-col items-center px-4 text-center">
-          <ApexThreads className="absolute left-1/2 top-2 -z-10 h-[80vh] w-screen -translate-x-1/2" />
-          <span
-            aria-hidden="true"
-            className="mb-10 block h-3 w-3 rounded-full bg-apex"
-            style={{
-              boxShadow: "0 0 24px 4px color-mix(in srgb, var(--atlas-white) 55%, transparent)",
-            }}
-          />
+          <ApexHero />
           <h1 className="type-display max-w-5xl text-step-5 uppercase text-primary">
             {hero.headline}
           </h1>
