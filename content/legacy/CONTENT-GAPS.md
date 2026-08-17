@@ -36,12 +36,13 @@ or system integration specifics. Detailed material goes behind the verified-cont
 Claims that appear in the legacy build and will be either confirmed or dropped — not
 carried forward on momentum:
 
-- "24/7 AI Monitoring", "30+ Service Modules", "Global Service Reach" (homepage stats)
-- JSON-LD `areaServed` is a **50 km radius around Agadir** while page copy says global —
-  contradictory; one of them goes
-- `foundingDate: 2024` and founder title "Founder & Chief Cybersecurity Engineer"
-- Sponsor name "1000 Fikra - Afriquia" (spelling, current status, permission to display)
-- The 25-service catalogue in the booking form — still the offering, or prune?
+- ~~"24/7 AI Monitoring", "30+ Service Modules", "Global Service Reach"~~ **Resolved 2026-08-17:**
+  24/7 confirmed; global confirmed; the "30+ modules" number retired (unverifiable)
+- ~~50 km radius vs global~~ **Resolved: global** — the GeoCircle does not carry forward
+- ~~foundingDate~~ **Resolved: founded 2026** (legacy JSON-LD's 2024 was incorrect).
+  Founder title still to confirm for /company (Phase 6)
+- ~~Sponsor~~ **Resolved: confirmed** — "1000 Fikra – Afriquia", displayable
+- ~~Catalogue~~ **Resolved: curated to 28 services** across four areas (D-021)
 
 ## Defects found in production (fixed by rewrite, listed for the record)
 

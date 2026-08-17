@@ -5,8 +5,8 @@ GitHub Pages serves each `page.html` at **both** `/page.html` and `/page` (verif
 so every retirement must redirect both forms. `redirects.json` (Phase 4) is generated
 from this table once dispositions are approved.
 
-**Status: dispositions below marked (approved) were decided by the owner on 2026-08-14
-(D-007…D-011); the rest remain PROPOSED until Phase 4 sign-off.**
+**Status: FINAL 2026-08-17 — all dispositions implemented in redirects.json / public/_redirects
+(Phase 4). Verification: tools/qa/check-redirects.mjs.**
 
 ## Content pages (14 URLs in sitemap.xml)
 
@@ -24,8 +24,8 @@ from this table once dispositions are approved.
 | `/ai-automation.html` | AI Automation | thin ("coming soon") | Redirect → `/atlas` (proposed) |
 | `/cloud.html` | Cloud Architecture | thin ("coming soon") | Redirect → `/cyber/cloud` (see note 3) |
 | `/development.html` | Web & Mobile Development | thin ("coming soon") | Redirect → `/` — offering retired (approved, D-010) |
-| `/blockchain.html` | Blockchain & Digital Asset Security | thin ("coming soon") | Redirect → `/cyber/offensive` (see note 3) |
-| `/robotics.html` | Robotics & Autonomous Systems Security | thin ("coming soon") | Redirect → `/cyber` (proposed) |
+| `/blockchain.html` | Blockchain & Digital Asset Security | thin ("coming soon") | Redirect → `/cyber` — blockchain audits pruned from catalogue (D-021) |
+| `/robotics.html` | Robotics & Autonomous Systems Security | thin ("coming soon") | Redirect → `/cyber/offensive` (IoT/OT security lives there) |
 
 Each row implies its extensionless twin (`/about.html` **and** `/about`), plus `/index.html` → `/`.
 

@@ -57,3 +57,13 @@ One line per non-obvious choice, newest last. The reason is the point — record
   as the 3D scene) is always rendered and is the experience for mobile, reduced-motion,
   no-WebGL and no-JS; the real-time scene lazy-loads on approach for capable desktops and
   fades in over it. One topology source (lib/three/topology.ts) so the two can never drift.
+- **D-020** (2026-08-17) Cyber content lives in content/cyber.ts as a typed module, not MDX:
+  it is catalogue-shaped data rendered through the primitives. MDX stays reserved for
+  prose-shaped content (/insights, Phase 6).
+- **D-021** (2026-08-17) Owner-verified facts: founded **2026** (legacy JSON-LD said 2024 —
+  wrong, dies here); service reach is **global** (the 50 km GeoCircle dies); 24/7 AI-assisted
+  monitoring confirmed; sponsor "1000 Fikra – Afriquia" confirmed and displayable. The
+  "30+ service modules" stat is retired — no unverifiable numbers on the site. Catalogue
+  curation delegated to engineering: 28 services kept across four areas; dropped as odd or
+  duplicative: DDoS/load testing, blockchain audits, BEC (merged into phishing), PAM audits,
+  shadow IT, PKI audits, cyber-insurance readiness, M&A due diligence, "basic IR" tier.
