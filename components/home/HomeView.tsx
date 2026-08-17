@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { hero, thesis, domains, cyber, stack } from "@/content/home";
 import { AssetPlaceholder } from "@/components/primitives/AssetPlaceholder";
+import { HeroMedia } from "@/components/primitives/HeroMedia";
 import { CornerBrackets } from "@/components/primitives/CornerBrackets";
 import { RuleLabel } from "@/components/primitives/RuleLabel";
 import { TelemetryStrip } from "@/components/primitives/TelemetryStrip";
@@ -234,12 +235,24 @@ export function HomeView() {
           data-panel={d.id}
           className="relative flex min-h-screen items-end overflow-hidden"
         >
-          <AssetPlaceholder
-            id={d.assetId}
-            note={d.assetNote}
-            labelAt="top"
-            className="asset-media absolute inset-0 opacity-55"
-          />
+          {d.delivered ? (
+            <div className="asset-media absolute inset-0 opacity-55">
+              <HeroMedia
+                id={d.assetId}
+                alt=""
+                width={d.delivered.width}
+                height={d.delivered.height}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          ) : (
+            <AssetPlaceholder
+              id={d.assetId}
+              note={d.assetNote}
+              labelAt="top"
+              className="asset-media absolute inset-0 opacity-55"
+            />
+          )}
           <Scanlines />
           <div className="relative z-10 mx-auto grid w-full max-w-7xl items-end gap-10 px-4 pb-24 pt-40 sm:px-6 lg:grid-cols-[1.2fr_1fr]">
             <div className="panel-copy">

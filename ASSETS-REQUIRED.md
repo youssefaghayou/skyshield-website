@@ -19,8 +19,9 @@ overlay → logo placement → hex palette → explicit negatives → atmosphere
 
 - **Used at:** `/` (Section 3 — AIR), `/air` (header)
 - **Format:** AVIF + WebP fallback, 2560×1440, ≤ 400 KB
-- **Placeholder:** hatched `--air-deep` panel with visible asset ID
-- **Status:** REQUESTED
+- **Placeholder:** retired — asset live on `/`
+- **Status:** DELIVERED 2026-08-17 (1672×941 vs 2560×1440 spec — fine at display opacity;
+  higher-res welcome, not required). Derivatives: `public/media/air-domain-hero-*.{avif,webp}`
 
 ### Generation prompt
 
@@ -52,8 +53,9 @@ a swarm of products.
 
 - **Used at:** `/` (Section 4 — LAND), `/land` (header)
 - **Format:** AVIF + WebP fallback, 2560×1440, ≤ 400 KB
-- **Placeholder:** hatched `--land-deep` panel with visible asset ID
-- **Status:** REQUESTED
+- **Placeholder:** retired — asset live on `/`
+- **Status:** DELIVERED 2026-08-17 (1672×941 vs 2560×1440 spec — fine at display opacity;
+  higher-res welcome, not required). Derivatives: `public/media/land-domain-hero-*.{avif,webp}`
 
 ### Generation prompt
 
@@ -84,8 +86,9 @@ in the wild, rebuilt from data by machines that work the same ground.
 
 - **Used at:** `/` (Section 5 — SEA), `/sea` (header)
 - **Format:** AVIF + WebP fallback, 2560×1440, ≤ 400 KB
-- **Placeholder:** hatched `--sea-deep` panel with visible asset ID
-- **Status:** REQUESTED
+- **Placeholder:** retired — asset live on `/`
+- **Status:** DELIVERED 2026-08-17 (1672×941 vs 2560×1440 spec — fine at display opacity;
+  higher-res welcome, not required). Derivatives: `public/media/sea-domain-hero-*.{avif,webp}`
 
 ### Generation prompt
 
@@ -174,3 +177,12 @@ taglines, no border. Atmosphere: an instrument label, not a poster.
   (2048², black on transparent) on 2026-08-14. It is a raster; no vector
   source exists. Open ask: original vector file if one exists, otherwise a
   vector redraw decision (logged for Phase 7; not blocking).
+
+---
+
+## [ASSET: cyber-domain-hero]
+
+- **Used at:** reserved for `/cyber` (Phase 4 header). The homepage cyber section keeps the
+  live SVG ouroboros (D-016) — the delivered still complements it, does not replace it.
+- **Status:** DELIVERED 2026-08-17, unsolicited (owner-generated, accepted). 1672×941;
+  derivatives processed alongside the other heroes.

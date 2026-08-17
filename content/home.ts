@@ -26,6 +26,8 @@ export type DomainPanelContent = {
   profiles: string[];
   assetId: string;
   assetNote: string;
+  /** Set when the asset is delivered and processed into public/media/. */
+  delivered?: { width: number; height: number };
 };
 
 export const domains: DomainPanelContent[] = [
@@ -38,6 +40,7 @@ export const domains: DomainPanelContent[] = [
     href: "/air",
     profiles: ["COLLABORATIVE AIRCRAFT", "INTERCEPTORS", "LONG-ENDURANCE SURVEILLANCE"],
     assetId: "air-domain-hero",
+    delivered: { width: 1672, height: 941 },
     assetNote: "2560×1440 · storm layer, formation resolving",
   },
   {
@@ -49,6 +52,7 @@ export const domains: DomainPanelContent[] = [
     href: "/land",
     profiles: ["LOGISTICS", "RECONNAISSANCE", "MOBILE COMMAND"],
     assetId: "land-domain-hero",
+    delivered: { width: 1672, height: 941 },
     assetNote: "2560×1440 · ridgelines, convoy scan fans",
   },
   {
@@ -60,6 +64,7 @@ export const domains: DomainPanelContent[] = [
     href: "/sea",
     profiles: ["SURFACE VESSELS", "SUBSURFACE", "MARITIME AWARENESS"],
     assetId: "sea-domain-hero",
+    delivered: { width: 1672, height: 941 },
     assetNote: "2560×1440 · below the waterline",
   },
 ];
