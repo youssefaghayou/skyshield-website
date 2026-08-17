@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { UnderConstruction } from "@/components/site/UnderConstruction";
+import { CyberSubpage } from "@/components/cyber/CyberSubpage";
+import { areas } from "@/content/cyber";
 
-export const metadata: Metadata = { title: "Incident Response & Forensics" };
+export const metadata: Metadata = {
+  title: "Incident Response & Forensics",
+  description:
+    "Incident response, digital forensics, remote triage, malware analysis, and ransomware recovery planning.",
+};
 
 export default function Page() {
-  return (
-    <UnderConstruction
-      route="/cyber/incident-forensics"
-      name="Incident Response & Forensics"
-      phase={4}
-      source="LEGACY SALVAGE"
-    />
-  );
+  return <CyberSubpage area={areas.find((a) => a.slug === "incident-forensics")!} />;
 }

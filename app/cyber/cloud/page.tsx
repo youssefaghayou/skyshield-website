@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { UnderConstruction } from "@/components/site/UnderConstruction";
+import { CyberSubpage } from "@/components/cyber/CyberSubpage";
+import { areas } from "@/content/cyber";
 
-export const metadata: Metadata = { title: "Cloud & Application Security" };
+export const metadata: Metadata = {
+  title: "Cloud & Application Security",
+  description:
+    "CSPM, IAM audits, DevSecOps integration, third-party risk, GDPR/CNDP privacy, and ISO 27001/NIST compliance.",
+};
 
 export default function Page() {
-  return (
-    <UnderConstruction
-      route="/cyber/cloud"
-      name="Cloud Security"
-      phase={4}
-      source="LEGACY SALVAGE"
-    />
-  );
+  return <CyberSubpage area={areas.find((a) => a.slug === "cloud")!} />;
 }

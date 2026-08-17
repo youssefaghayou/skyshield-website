@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { UnderConstruction } from "@/components/site/UnderConstruction";
+import { CyberSubpage } from "@/components/cyber/CyberSubpage";
+import { areas } from "@/content/cyber";
 
-export const metadata: Metadata = { title: "Offensive Security" };
+export const metadata: Metadata = {
+  title: "Offensive Security",
+  description:
+    "Vulnerability assessment, penetration testing, red and purple teaming, secure code review, and IoT/OT security.",
+};
 
 export default function Page() {
-  return (
-    <UnderConstruction
-      route="/cyber/offensive"
-      name="Offensive"
-      phase={4}
-      source="LEGACY SALVAGE"
-    />
-  );
+  return <CyberSubpage area={areas.find((a) => a.slug === "offensive")!} />;
 }
