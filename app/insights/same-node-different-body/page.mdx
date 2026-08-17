@@ -1,0 +1,66 @@
+import { PostHeader, PostFooter } from "@/components/site/PostShell";
+
+export const metadata = {
+  title: "Same node, different body",
+  description:
+    "Platform-agnostic autonomy is not a porting exercise — it is an architectural decision made before the first platform exists.",
+};
+
+<div className="mx-auto max-w-3xl px-4 sm:px-6">
+
+<PostHeader slug="same-node-different-body" />
+
+Every autonomy company eventually claims its stack is "platform-agnostic." The claim usually
+means something narrower: _we have ported it twice, and the second port hurt less than the
+first._ That is not platform agnosticism. That is scar tissue.
+
+Real platform agnosticism is a decision you make before the first platform exists, and it
+shows up as three disciplines that are easy to state and expensive to keep.
+
+## The node never knows its body
+
+The first discipline is a prohibition: no part of the decision-making core may name the
+platform it runs on. Not its type, not its dimensions, not its manufacturer, not a single
+hardcoded number that quietly encodes "this is an aircraft."
+
+What the core is allowed to know is what the platform _declares_: what it can do, within
+what envelope, at what cost. The platform describes itself; the core plans within the
+description. The moment one magic number leaks — one assumption that endurance is measured
+in hours, or that motion happens in three dimensions rather than two — the abstraction has
+failed, and you will not find out until the port.
+
+## Intent goes down, never commands
+
+The second discipline shapes the interfaces. If the layer above sends _commands_ — go here,
+turn there — it must understand the body it is commanding, and the abstraction dies at the
+first vehicle that turns differently. So the layers exchange **intent**: objectives and
+constraints, decomposed downward, with each node deciding _how_ inside the bounds it was
+given.
+
+A search objective means one thing decomposed across a formation of aircraft and another
+thing decomposed across ground vehicles in a valley — and the layer that issued it does not
+need to know the difference. That indifference is the product.
+
+## The proof must be brutal
+
+The third discipline is about honesty. A stack that has flown two platforms has proven it
+can fly those two platforms. If the architecture claims to be platform-agnostic, the test
+must be one no team can quietly tune for: platforms the core has _never seen_, generated in
+quantity, with envelopes chosen adversarially.
+
+The test is not whether the system flies each one gracefully. It is whether the core needed
+**zero changes** to try. A port that requires touching the core is not a port; it is a
+rewrite wearing a port's clothes.
+
+---
+
+None of this is free. Keeping the core body-blind costs abstraction work up front, and the
+temptation to "just read the airframe config from here" arrives weekly. The reason to pay
+is at the bottom of every roadmap: the fourth platform, the fifth domain, the integration
+you have not imagined yet. Architecture is what you buy before you know you need it.
+
+[The architecture →](/atlas)
+
+<PostFooter />
+
+</div>

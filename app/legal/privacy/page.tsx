@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
-import { UnderConstruction } from "@/components/site/UnderConstruction";
+import { LegalPage } from "@/components/site/LegalPage";
+import { legalDocs } from "@/content/legal";
+
+const doc = legalDocs.find((d) => d.slug === "privacy")!;
 
 export const metadata: Metadata = { title: "Privacy Policy" };
 
 export default function Page() {
-  return (
-    <UnderConstruction
-      route="/legal/privacy"
-      name="Privacy Policy"
-      phase={6}
-      source="DRAFT FOR OWNER REVIEW"
-    />
-  );
+  return <LegalPage doc={doc} />;
 }

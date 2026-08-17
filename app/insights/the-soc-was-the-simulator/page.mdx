@@ -1,0 +1,63 @@
+import { PostHeader, PostFooter } from "@/components/site/PostShell";
+
+export const metadata = {
+  title: "The SOC was the simulator",
+  description:
+    "What running a live security operation teaches an autonomy architecture that no simulator can.",
+};
+
+<div className="mx-auto max-w-3xl px-4 sm:px-6">
+
+<PostHeader slug="the-soc-was-the-simulator" />
+
+Autonomy stacks are raised in simulators, and it shows. Simulation is where you control the
+weather, schedule the failures, and grade your own homework. It is necessary — and it is
+flattering, because a simulator only contains the adversities you thought to put in it.
+
+SkyShield's stack grew up somewhere less polite: a working security operation, monitoring
+live networks against live adversaries, around the clock. Before the architecture ever
+touched an airframe, it had spent its childhood being attacked. That order of events taught
+us things a simulator never volunteers.
+
+## Adversaries do not read your test plan
+
+A simulated fault happens where you injected it. A real adversary probes where you are
+weakest on a schedule you do not control, adapts to your responses, and treats your
+assumptions as attack surface. Operating under that pressure forces a specific humility
+into the architecture: detection is probabilistic, signal is hostile, and any component
+that trusts its inputs completely is a component waiting to be used against you.
+
+## Triage is the real autonomy problem
+
+The romantic version of autonomy is the vehicle deciding where to go. The industrial
+version is quieter: deciding, out of ten thousand events an hour, which three a human
+should see. A security operation lives or dies on that decision — too eager and you drown
+the operator, too quiet and you miss the intrusion.
+
+That is the same problem an autonomous fleet has with its operator, exactly. Compress the
+world into what the human needs, when they need it, without deciding anything on their
+behalf that was theirs to decide. We did not learn that flying. We learned it on nights
+when the alert queue was wrong in both directions.
+
+## Accountability has to be built, not promised
+
+In security operations, "who authorized this and when" is not paperwork — it is the
+difference between a response and an incident of your own making. So the discipline of
+routing consequential decisions through a named human, and recording the chain end to end,
+was load-bearing in our stack years before anyone asked how it would apply to aircraft.
+
+When people ask what makes an autonomy company trustworthy, they expect an answer about
+sensors or testing. Ours is procedural: the machine proposes, a person disposes, and the
+record survives. We did not add that for the drones. The drones inherited it.
+
+---
+
+The simulator still matters; we use it daily, and it catches what it is built to catch.
+But if you want to know whether an architecture keeps making correct decisions under
+adversarial pressure, there is no substitute for having adversaries.
+
+The proving ground never closed. [It is still one of our four domains →](/cyber)
+
+<PostFooter />
+
+</div>
