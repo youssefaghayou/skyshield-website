@@ -74,3 +74,17 @@ One line per non-obvious choice, newest last. The reason is the point — record
   are art-directed atmosphere, but a platform page depicts the product — showing a
   generated concept airframe there would be an invented product fact. Turntables wait for
   real platform media from the owner.
+- **D-023** (2026-08-17) Contact is structured email, not a form backend: the site is fully
+  static (no server), a mail service would add secrets and a spam surface, and mailto with
+  prefilled subjects preserves the two-door split (general vs verified). A real form endpoint
+  (e.g. a Pages Function + mail API) is a post-launch owner decision.
+- **D-024** (2026-08-17) The footer language line is static ("EN — FR / AR PLANNED"), not a
+  switcher: a switcher with one language is fake interaction. It becomes a real switcher when
+  FR/AR content exists.
+- **D-025** (2026-08-17) Insights = MDX pages + a typed registry (content/insights.ts) for
+  the index; adding a post is one MDX file plus one registry entry. No frontmatter plugin
+  needed under static export.
+- **D-026** (2026-08-17) The delivered logo's transparency is fake — a baked-in checkerboard
+  with opaque alpha throughout. derive-logo.mjs now rebuilds true alpha from inverted
+  luminance (checker zeroed via linear curve, art edges kept), outputting white-on-
+  transparent derivatives that sit correctly on the void.

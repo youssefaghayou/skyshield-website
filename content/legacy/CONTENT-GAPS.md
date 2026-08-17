@@ -27,8 +27,8 @@ or system integration specifics. Detailed material goes behind the verified-cont
 | Team beyond the founder | `/company` | Leadership section names founder only |
 | Sponsor/partner details and approval to name them | `/company` | One line: incubators, cloud partners, communities; one named: "1000 Fikra - Afriquia" |
 | Verified-technical-request policy (who qualifies, what is shared, response expectations) | `/contact` split paths | Single booking form only |
-| Legal pages: privacy policy, terms, responsible disclosure | `/legal/*` | **None exist on the legacy site at all** |
-| Two seed posts for insights | `/insights` | Nothing |
+| Legal pages v1.0 shipped (Phase 6) — factual to the site as built | `/legal/*` | **Owner/legal review requested** before cutover |
+| ~~Two seed posts~~ | `/insights` | **Shipped 2026-08-17** (registry + MDX) |
 | French / Arabic content plan | i18n readiness | Site is EN-only; JSON-LD claims EN/FR/AR service languages |
 
 ## Facts requiring owner verification before reuse
@@ -66,4 +66,4 @@ Markers currently visible on the site, each waiting on the owner:
 | Public designation | all 8 platform pages + domain platform grids | A public name per platform, if/when naming is wanted (owner chose mission-profile-only for launch, D-022) |
 | Public-releasable specifications | all 8 platform pages | Approved figures only — pages ship without specs until then |
 | Platform turntable media | all 8 platform pages | Real renders/photos; not generatable (D-022) |
-| Founder title | /company (Phase 6) | Confirm "Founder & Chief Cybersecurity Engineer" or supply current title |
+| ~~Founder title~~ | /company | **Resolved 2026-08-17: kept** — "Founder & Chief Cybersecurity Engineer" |
