@@ -67,3 +67,10 @@ One line per non-obvious choice, newest last. The reason is the point — record
   curation delegated to engineering: 28 services kept across four areas; dropped as odd or
   duplicative: DDoS/load testing, blockchain audits, BEC (merged into phishing), PAM audits,
   shadow IT, PKI audits, cyber-insurance readiness, M&A due diligence, "basic IR" tier.
+- **D-022** (2026-08-17) Platforms are presented by mission profile only (owner decision):
+  no designations, no invented names. Designation and public-spec slots render as visible
+  [NEEDS INPUT] markers (NeedsInput primitive, --warn token) and are logged in
+  CONTENT-GAPS.md. Platform turntable media is NOT generatable by prompt: the domain heroes
+  are art-directed atmosphere, but a platform page depicts the product — showing a
+  generated concept airframe there would be an invented product fact. Turntables wait for
+  real platform media from the owner.

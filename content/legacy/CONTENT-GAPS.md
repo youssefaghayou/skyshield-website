@@ -56,3 +56,14 @@ carried forward on momentum:
   (template concatenation bug)
 - OG image 404s on Next-generated pages (`og-image.png` missing)
 - Legacy metadata is cyber-only everywhere — full metadata rewrite is planned anyway
+
+## NEEDS-INPUT registry (Phase 5, 2026-08-17)
+
+Markers currently visible on the site, each waiting on the owner:
+
+| Marker | Where | Needed |
+|---|---|---|
+| Public designation | all 8 platform pages + domain platform grids | A public name per platform, if/when naming is wanted (owner chose mission-profile-only for launch, D-022) |
+| Public-releasable specifications | all 8 platform pages | Approved figures only — pages ship without specs until then |
+| Platform turntable media | all 8 platform pages | Real renders/photos; not generatable (D-022) |
+| Founder title | /company (Phase 6) | Confirm "Founder & Chief Cybersecurity Engineer" or supply current title |

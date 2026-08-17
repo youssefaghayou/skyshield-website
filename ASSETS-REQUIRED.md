@@ -186,3 +186,16 @@ taglines, no border. Atmosphere: an instrument label, not a poster.
   live SVG ouroboros (D-016) — the delivered still complements it, does not replace it.
 - **Status:** DELIVERED 2026-08-17, unsolicited (owner-generated, accepted). 1672×941;
   derivatives processed alongside the other heroes.
+
+---
+
+## [ASSET: platform-turntables] (8 slots)
+
+- **Used at:** every platform page (`/air/*`, `/land/*`, `/sea/*`) — Tier 2 hero slot
+- **Format:** 36–72 frame turntable sequence per platform, WebP/AVIF, 1600×900,
+  or a single high-quality still per platform as an interim
+- **Placeholder:** labelled per-page (`[ASSET: air-interceptor-turntable]` etc.)
+- **Status:** AWAITING OWNER MEDIA — deliberately **no generation prompt** (D-022):
+  a platform page depicts the product, and generated concept hardware would be an
+  invented product fact. Real renders or photography only, whenever platforms are
+  ready to be shown. Drop into `incoming-assets/` named by asset ID.
