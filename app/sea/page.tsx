@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { UnderConstruction } from "@/components/site/UnderConstruction";
+import { DomainPage } from "@/components/domains/DomainPage";
+import { domainDefs } from "@/content/domains";
 
-export const metadata: Metadata = { title: "Sea" };
+const d = domainDefs.find((x) => x.id === "sea")!;
+
+export const metadata: Metadata = {
+  title: "Sea — The Domain Nobody Watches",
+  description:
+    "SkyShield's sea domain: persistent surface vessels and autonomous subsurface platforms for maritime awareness.",
+};
 
 export default function Page() {
-  return <UnderConstruction route="/sea" name="Sea" phase={5} source="OWNER INPUT" />;
+  return <DomainPage d={d} />;
 }
