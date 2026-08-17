@@ -1,4 +1,31 @@
-# Cloudflare Pages redirects.
-# Populated in Phase 4 from redirects.json — every legacy URL (both /page.html
-# and /page forms) gets a 301 to its successor. Dispositions live in
-# content/legacy/URL-INVENTORY.md and are owner-approved before landing here.
+# GENERATED from redirects.json — edit that file, then run:
+#   node tools/redirects/generate.mjs
+# Legacy URL dispositions: content/legacy/URL-INVENTORY.md (owner-approved).
+
+/index.html / 301
+/about.html /company 301
+/about /company 301
+/services.html /cyber 301
+/services /cyber 301
+/cybersecurity.html /cyber 301
+/cybersecurity /cyber 301
+/cybersecurity-offensive.html /cyber/offensive 301
+/cybersecurity-offensive /cyber/offensive 301
+/cybersecurity-defensive.html /cyber/defensive 301
+/cybersecurity-defensive /cyber/defensive 301
+/cybersecurity-cloud.html /cyber/cloud 301
+/cybersecurity-cloud /cyber/cloud 301
+/cybersecurity-incident-forensics.html /cyber/incident-forensics 301
+/cybersecurity-incident-forensics /cyber/incident-forensics 301
+/contact.html /contact 301
+/ai-automation.html /atlas 301
+/ai-automation /atlas 301
+/cloud.html /cyber/cloud 301
+/cloud /cyber/cloud 301
+/development.html / 301
+/development / 301
+/blockchain.html /cyber 301
+/blockchain /cyber 301
+/robotics.html /cyber/offensive 301
+/robotics /cyber/offensive 301
+/logo.png /brand/logo-white-1024.png 301

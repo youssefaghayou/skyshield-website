@@ -1,0 +1,44 @@
+{
+  "comment": "Every legacy URL and its disposition. Source of truth for public/_redirects (regenerate with: node tools/redirects/generate.mjs). Dispositions per content/legacy/URL-INVENTORY.md, owner-approved. GitHub Pages served every page at both /page.html and /page, so each entry covers both forms.",
+  "redirects": [
+    { "from": "/index.html", "to": "/", "reason": "canonical root" },
+    { "from": "/about", "to": "/company", "reason": "content migrated" },
+    { "from": "/services", "to": "/cyber", "reason": "services hub superseded by cyber domain" },
+    { "from": "/cybersecurity", "to": "/cyber", "reason": "content migrated" },
+    { "from": "/cybersecurity-offensive", "to": "/cyber/offensive", "reason": "content migrated" },
+    { "from": "/cybersecurity-defensive", "to": "/cyber/defensive", "reason": "content migrated" },
+    { "from": "/cybersecurity-cloud", "to": "/cyber/cloud", "reason": "content migrated" },
+    {
+      "from": "/cybersecurity-incident-forensics",
+      "to": "/cyber/incident-forensics",
+      "reason": "content migrated (D-011)"
+    },
+    {
+      "from": "/contact",
+      "to": "/contact",
+      "reason": "same path, new page — no redirect emitted, .html form only"
+    },
+    {
+      "from": "/ai-automation",
+      "to": "/atlas",
+      "reason": "AI systems story lives with the architecture"
+    },
+    { "from": "/cloud", "to": "/cyber/cloud", "reason": "cloud pillar folded into cyber" },
+    { "from": "/development", "to": "/", "reason": "offering retired (D-010)" },
+    {
+      "from": "/blockchain",
+      "to": "/cyber",
+      "reason": "pillar retired; blockchain audits pruned from catalogue (D-021)"
+    },
+    {
+      "from": "/robotics",
+      "to": "/cyber/offensive",
+      "reason": "autonomous-systems security lives in offensive (IoT/OT)"
+    },
+    {
+      "from": "/logo.png",
+      "to": "/brand/logo-white-1024.png",
+      "reason": "legacy og:image target kept resolvable"
+    }
+  ]
+}
